@@ -376,7 +376,7 @@ export default function Hone() {
 
         {/* Hero Section */}
         <section
-          className="px-4 md:px-60 py-12 min-h-screen flex items-center relative isolate pt-20"
+          className="px-4 md:px-60 py-12 min-h-screen flex items-center relative isolate pt-20 overflow-hidden"
           style={{
             backgroundImage: "url('/hero_section.png')",
             backgroundSize: "cover",
@@ -388,37 +388,48 @@ export default function Hone() {
             className="absolute inset-0 bg-[#090D18]/70"
             aria-hidden="true"
           ></div>
+          
+          {/* Animated Background Elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-pink-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          </div>
+          
           <div className="relative z-10 max-w-4xl w-full px-4 sm:px-0">
-            <div className="mb-6">
-              <h1 className="font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-light text-white mb-2 tracking-tight">
-                RattanaCode888
+            <div className="mb-8 animate-in slide-in-from-left-4 fade-in duration-1000">
+              <h1 className="font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-light text-white mb-4 tracking-tight">
+                <span className="bg-gradient-to-r from-white via-cyan-200 to-purple-200 bg-clip-text text-transparent">
+                  RattanaCode888
+                </span>
               </h1>
-              <p className="font-poppins text-white text-sm sm:text-base md:text-[16px] leading-6">
+              <p className="font-poppins text-gray-300 text-lg sm:text-xl md:text-2xl leading-relaxed">
                 Design & Code That Grows With You
               </p>
             </div>
 
             <div
-              className="mb-6 w-full max-w-[615px]"
+              className="mb-8 w-full max-w-[615px] animate-in slide-in-from-left-4 fade-in duration-1000 delay-300"
               style={{
-                height: "1px",
+                height: "2px",
                 background:
                   "linear-gradient(267deg, #00F0FF 4.01%, #5200FF 57.55%, #FF2DF7 114.97%)",
+                boxShadow: "0 0 20px rgba(0, 240, 255, 0.3)",
               }}
             ></div>
 
-            <button
-              onClick={() => setIsContactModalOpen(true)}
-              className="cursor-pointer inline-flex items-center justify-center gap-3 text-white font-montserrat w-full sm:w-[219px] relative"
-              style={{
-                height: "45.819px",
-                borderRadius: "23.298px",
-                background: "transparent",
-                border: "none",
-              }}
-            >
+            <div className="animate-in slide-in-from-left-4 fade-in duration-1000 delay-500">
+              <button
+                onClick={() => setIsContactModalOpen(true)}
+                className="cursor-pointer inline-flex items-center justify-center gap-3 text-white font-montserrat w-full sm:w-[219px] relative group transition-all duration-300 hover:scale-105 active:scale-95"
+                style={{
+                  height: "45.819px",
+                  borderRadius: "23.298px",
+                  background: "transparent",
+                  border: "none",
+                }}
+              >
               <div
-                className=" absolute inset-0"
+                className="absolute inset-0 group-hover:shadow-lg group-hover:shadow-cyan-500/50 transition-all duration-300"
                 style={{
                   background:
                     "linear-gradient(90deg, #00F0FF 0%, #5200FF 50%, #FF2DF7 100%)",
@@ -429,11 +440,11 @@ export default function Hone() {
                 <div
                   className="w-full h-full flex items-center justify-center gap-3"
                   style={{
-                    background: "rgba(9, 13, 24, 0.8)",
+                    background: "rgba(9, 13, 24, 0.9)",
                     borderRadius: "23.298px",
                   }}
                 >
-                  <span className="text-lg">Contact Now</span>
+                  <span className="text-lg font-semibold">Contact Now</span>
                   <svg
                     width="19"
                     height="19"
@@ -466,94 +477,110 @@ export default function Hone() {
                 </div>
               </div>
             </button>
+            </div>
           </div>
         </section>
 
         {/* Service Section */}
-        <section id="service-section" className="px-4 md:px-60 py-8 md:py-12">
-          <div className="mb-6">
-            <h2 className="font-poppins text-3xl font-normal mb-2">
-              <span
+        <section id="service-section" className="px-4 md:px-60 py-16 md:py-20 relative">
+          {/* Background Elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-20 right-20 w-60 h-60 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 left-20 w-60 h-60 bg-gradient-to-br from-pink-500/10 to-cyan-500/10 rounded-full blur-3xl"></div>
+          </div>
+          
+          <div className="relative z-10">
+            <div className="mb-12 text-center animate-in slide-in-from-bottom-4 fade-in duration-1000">
+              <h2 className="font-poppins text-4xl md:text-5xl font-bold mb-4">
+                <span
+                  className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+                  style={{
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Service
+                </span>
+              </h2>
+              <p className="font-poppins text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                Optimize your business with user-friendly, scalable, and efficient
+                digital solutions.
+              </p>
+            </div>
+
+            <div className="flex flex-col lg:flex-row justify-center gap-8 md:gap-10">
+              {/* Website Design & Development Card */}
+              <div
+                className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 pb-8 flex flex-col w-full max-w-[450px] border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/20 animate-in slide-in-from-left-4 fade-in duration-1000 delay-200"
                 style={{
-                  background:
-                    "linear-gradient(90deg, #00F0FF 0%, #5200FF 50%, #FF2DF7 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
+                  height: "auto",
                 }}
               >
-                Service
-              </span>
-            </h2>
-            <p className="font-poppins text-white text-base">
-              Optimize your business with user-friendly, scalable, and efficient
-              digital solutions.
-            </p>
-          </div>
-
-          <div className="flex flex-col lg:flex-row justify-center gap-4 md:gap-6">
-            {/* Website Design & Development Card */}
-            <div
-              className="bg-transparent rounded-2xl p-3 pb-6 flex flex-col w-full max-w-[450px] "
-              style={{
-                height: "auto",
-                border: "1px solid #FFF",
-              }}
-            >
-              <div className="h-72 bg-white rounded-xl mb-4 flex items-center justify-center">
-                <img
-                  src="./code.jpg"
-                  alt="Website Development"
-                  className="w-full h-full object-cover rounded-xl"
-                />
-              </div>
-              <div className="px-3 flex-1 flex flex-col">
-                <h3
-                  className="font-poppins text-white text-base mb-3"
-                  style={{ fontWeight: 900, lineHeight: "24px" }}
-                >
-                  Website Design & Development
-                </h3>
-                <div className="font-poppins text-white text-sm leading-6 mb-6 flex-1">
-                  <p>- Inventory Management Systems</p>
-                  <p>- Point of Sale (POS) Systems</p>
-                  <p>- E-commerce Platforms</p>
-                  <p>
-                    - Custom Business Software for small and large enterprises
-                  </p>
+                <div className="h-72 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl mb-6 flex items-center justify-center overflow-hidden group">
+                  <img
+                    src="./code.jpg"
+                    alt="Website Development"
+                    className="w-full h-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-500"
+                  />
                 </div>
-                <button
-                  onClick={() => {
-                    window.open(
-                      "https://sppkng1998.wixsite.com/my-portfolio",
-                      "_blank"
-                    );
-                  }}
-                  className="cursor-pointer flex items-center justify-center text-white font-montserrat relative w-full sm:w-[219px]"
-                  style={{
-                    height: "45.819px",
-                    borderRadius: "23.298px",
-                    background: "transparent",
-                    border: "none",
-                  }}
-                >
-                  <div
-                    className="absolute inset-0"
+                <div className="flex-1 flex flex-col">
+                  <h3
+                    className="font-poppins text-white text-xl font-bold mb-4"
+                    style={{ lineHeight: "28px" }}
+                  >
+                    Website Design & Development
+                  </h3>
+                  <div className="font-poppins text-gray-300 text-base leading-7 mb-8 flex-1 space-y-2">
+                    <p className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                      Inventory Management Systems
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                      Point of Sale (POS) Systems
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                      E-commerce Platforms
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                      Custom Business Software for small and large enterprises
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => {
+                      window.open(
+                        "https://sppkng1998.wixsite.com/my-portfolio",
+                        "_blank"
+                      );
+                    }}
+                    className="cursor-pointer flex items-center justify-center text-white font-montserrat relative w-full group transition-all duration-300 hover:scale-105 active:scale-95"
                     style={{
-                      background:
-                        "linear-gradient(90deg, #00F0FF 0%, #5200FF 50%, #FF2DF7 100%)",
-                      padding: "1px",
-                      borderRadius: "23.298px",
+                      height: "50px",
+                      borderRadius: "25px",
+                      background: "transparent",
+                      border: "none",
                     }}
                   >
                     <div
-                      className="w-full h-full flex items-center justify-center gap-3"
+                      className="absolute inset-0 group-hover:shadow-lg group-hover:shadow-cyan-500/50 transition-all duration-300"
                       style={{
-                        background: "rgba(9, 13, 24, 0.8)",
-                        borderRadius: "23.298px",
+                        background:
+                          "linear-gradient(90deg, #00F0FF 0%, #5200FF 50%, #FF2DF7 100%)",
+                        padding: "1px",
+                        borderRadius: "25px",
                       }}
                     >
-                      <span className="text-base">View Details</span>
+                      <div
+                        className="w-full h-full flex items-center justify-center gap-3"
+                        style={{
+                          background: "rgba(9, 13, 24, 0.9)",
+                          borderRadius: "25px",
+                        }}
+                      >
+                        <span className="text-base font-semibold">View Details</span>
                       <svg
                         className="ml-3"
                         width="19"
@@ -590,58 +617,63 @@ export default function Hone() {
               </div>
             </div>
 
-            {/* Graphic Design & Artwork Card */}
-            <div
-              className="bg-transparent rounded-2xl p-3 pb-6 flex flex-col w-full max-w-[450px] "
-              style={{
-                height: "auto",
-                border: "1px solid #FFF",
-              }}
-            >
-              <div className="h-72 bg-white rounded-xl mb-4 flex items-center justify-center">
-                <img
-                  src="./design.jpg"
-                  alt="Graphic Design"
-                  className="w-full h-full object-cover rounded-xl"
-                />
-              </div>
-              <div className="px-3 flex-1 flex flex-col">
-                <h3
-                  className="font-poppins text-white text-base mb-3"
-                  style={{ fontWeight: 900, lineHeight: "24px" }}
-                >
-                  Graphic Design & Artwork
-                </h3>
-                <div className="font-poppins text-white text-sm leading-6 mb-6 flex-1">
-                  <p>Logos, Branding, Marketing Materials &</p>
-                  <p>More – Designed to Make an Impact</p>
+              {/* Graphic Design & Artwork Card */}
+              <div
+                className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 pb-8 flex flex-col w-full max-w-[450px] border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-pink-500/20 animate-in slide-in-from-right-4 fade-in duration-1000 delay-400"
+                style={{
+                  height: "auto",
+                }}
+              >
+                <div className="h-72 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl mb-6 flex items-center justify-center overflow-hidden group">
+                  <img
+                    src="./design.jpg"
+                    alt="Graphic Design"
+                    className="w-full h-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-500"
+                  />
                 </div>
-                <button
-                  className="cursor-pointer flex items-center justify-center text-white font-montserrat relative w-full sm:w-[219px]"
-                  style={{
-                    height: "45.819px",
-                    borderRadius: "23.298px",
-                    background: "transparent",
-                    border: "none",
-                  }}
-                >
-                  <div
-                    className="absolute inset-0"
+                <div className="flex-1 flex flex-col">
+                  <h3
+                    className="font-poppins text-white text-xl font-bold mb-4"
+                    style={{ lineHeight: "28px" }}
+                  >
+                    Graphic Design & Artwork
+                  </h3>
+                  <div className="font-poppins text-gray-300 text-base leading-7 mb-8 flex-1 space-y-2">
+                    <p className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-pink-400 rounded-full"></span>
+                      Logos, Branding, Marketing Materials
+                    </p>
+                    <p className="flex items-center gap-2">
+                      <span className="w-2 h-2 bg-pink-400 rounded-full"></span>
+                      More – Designed to Make an Impact
+                    </p>
+                  </div>
+                  <button
+                    className="cursor-pointer flex items-center justify-center text-white font-montserrat relative w-full group transition-all duration-300 hover:scale-105 active:scale-95"
                     style={{
-                      background:
-                        "linear-gradient(90deg, #00F0FF 0%, #5200FF 50%, #FF2DF7 100%)",
-                      padding: "1px",
-                      borderRadius: "23.298px",
+                      height: "50px",
+                      borderRadius: "25px",
+                      background: "transparent",
+                      border: "none",
                     }}
                   >
                     <div
-                      className="w-full h-full flex items-center justify-center gap-3"
+                      className="absolute inset-0 group-hover:shadow-lg group-hover:shadow-pink-500/50 transition-all duration-300"
                       style={{
-                        background: "rgba(9, 13, 24, 0.8)",
-                        borderRadius: "23.298px",
+                        background:
+                          "linear-gradient(90deg, #00F0FF 0%, #5200FF 50%, #FF2DF7 100%)",
+                        padding: "1px",
+                        borderRadius: "25px",
                       }}
                     >
-                      <span className="text-base">View Details</span>
+                      <div
+                        className="w-full h-full flex items-center justify-center gap-3"
+                        style={{
+                          background: "rgba(9, 13, 24, 0.9)",
+                          borderRadius: "25px",
+                        }}
+                      >
+                        <span className="text-base font-semibold">View Details</span>
                       <svg
                         className="ml-3"
                         width="19"
@@ -678,173 +710,188 @@ export default function Hone() {
               </div>
             </div>
           </div>
+        </div>
         </section>
 
         {/* Skills Section */}
-        <section id="skills-section" className="px-4 md:px-60 py-12">
-          <div className="mb-6">
-            <h2 className="font-poppins text-3xl font-normal mb-3">
-              <span
-                style={{
-                  background:
-                    "linear-gradient(90deg, #00F0FF 0%, #5200FF 50%, #FF2DF7 100%)",
-                  WebkitBackgroundClip: "text",
-                  WebkitTextFillColor: "transparent",
-                  backgroundClip: "text",
-                }}
-              >
-                Skills
-              </span>
-            </h2>
+        <section id="skills-section" className="px-4 md:px-60 py-16 md:py-20 relative">
+          {/* Background Elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute top-20 left-20 w-60 h-60 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute bottom-20 right-20 w-60 h-60 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+          </div>
+          
+          <div className="relative z-10">
+            <div className="mb-12 text-center animate-in slide-in-from-bottom-4 fade-in duration-1000">
+              <h2 className="font-poppins text-4xl md:text-5xl font-bold mb-4">
+                <span
+                  className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
+                  style={{
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Skills
+                </span>
+              </h2>
+              <p className="font-poppins text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                Professional expertise in modern technologies and design tools
+              </p>
+            </div>
 
-            <div className="mb-8">
-              <h3
-                className="font-poppins text-white text-base mb-2"
-                style={{ fontWeight: 900 }}
-              >
-                UX / UI Design
-              </h3>
-              <div className="font-poppins text-white text-base leading-normal">
-                <p>User experience & user interface</p>
-                <p>• Design system for developer</p>
-                <p>Mock-up</p>
-                <p>Create Flow, Wireframe, Prototype</p>
+            <div className="grid md:grid-cols-2 gap-12 mb-16">
+              {/* UX/UI Design */}
+              <div className="animate-in slide-in-from-left-4 fade-in duration-1000 delay-200">
+                <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300">
+                  <h3 className="font-poppins text-white text-2xl font-bold mb-6 flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-white">
+                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    UX / UI Design
+                  </h3>
+                  <div className="space-y-3">
+                    <p className="text-gray-300 text-lg">User experience & user interface design</p>
+                    <div className="space-y-2">
+                      <p className="flex items-center gap-3 text-gray-300">
+                        <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                        Design system for developers
+                      </p>
+                      <p className="flex items-center gap-3 text-gray-300">
+                        <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                        Mock-ups & Prototypes
+                      </p>
+                      <p className="flex items-center gap-3 text-gray-300">
+                        <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
+                        User Flow & Wireframes
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Developer Skills */}
+              <div className="animate-in slide-in-from-right-4 fade-in duration-1000 delay-400">
+                <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300">
+                  <h3 className="font-poppins text-white text-2xl font-bold mb-6 flex items-center gap-3">
+                    <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
+                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-white">
+                        <polyline points="16,18 22,12 16,6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <polyline points="8,6 2,12 8,18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                    Development
+                  </h3>
+                  <div className="space-y-3">
+                    <p className="text-gray-300 text-lg">Full-stack development expertise</p>
+                    <div className="space-y-2">
+                      <p className="flex items-center gap-3 text-gray-300">
+                        <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
+                        Frontend: React, Next.js, Vue.js, TypeScript
+                      </p>
+                      <p className="flex items-center gap-3 text-gray-300">
+                        <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
+                        Backend: NestJS, REST API, PostgreSQL
+                      </p>
+                      <p className="flex items-center gap-3 text-gray-300">
+                        <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
+                        LINE Platform Integration
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
 
-            {/* UX/UI Design logos */}
-            <div className="flex justify-center gap-6 mb-8 py-6">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/5561bb445888d105f826a7130a46bcd199bccb39?width=120"
-                alt="Figma"
-                className="w-15 h-15 rounded-lg"
-              />
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/ca7ce5bdae50768e4f2523ca0303d7d4573694f7?width=120"
-                alt="Adobe XD"
-                className="w-15 h-15 rounded-lg"
-              />
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/3406e0b36e083043587d828c533780ef8978cc2a?width=120"
-                alt="Photoshop"
-                className="w-15 h-15 rounded-lg"
-              />
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/e4114276916ae0887e775a6819f4bff33d144b5b?width=120"
-                alt="Illustrator"
-                className="w-15 h-15 rounded-lg"
-              />
-            </div>
+            {/* Technology Stack */}
+            <div className="mb-16">
+              <h3 className="text-2xl font-bold text-white text-center mb-8">Technology Stack</h3>
+              
+              {/* Design Tools */}
+              <div className="mb-8">
+                <h4 className="text-lg font-semibold text-cyan-400 mb-4 text-center">Design Tools</h4>
+                <div className="flex flex-wrap justify-center gap-4">
+                  {['Figma', 'Adobe XD', 'Photoshop', 'Illustrator'].map((tool, index) => (
+                    <div key={tool} className="bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105">
+                      <span className="text-white font-medium">{tool}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
 
-            <div className="mb-8">
-              <h3
-                className="font-poppins text-white text-base mb-2"
-                style={{ fontWeight: 900 }}
-              >
-                Developer Skill
-              </h3>
-              <div className="font-poppins text-white text-base leading-normal">
-                <p>
-                  Frontend: JavaScript, TypeScript, Vue.js, React.js, Next.js,
-                  Tailwind CSS, Ant Design
-                </p>
-                <p>Backend: TypeScript, NestJS, REST API</p>
-                <p>Database: PostgreSQL, MySQL</p>
-                <p>Dev Tools: Git, Docker, Postman</p>
-                <p>
-                  LINE Platform: LINE Messaging API, LINE Login, Webhook, Rich
-                  Menu
-                </p>
+              {/* Development Tools */}
+              <div>
+                <h4 className="text-lg font-semibold text-purple-400 mb-4 text-center">Development Tools</h4>
+                <div className="flex flex-wrap justify-center gap-4">
+                  {['React', 'Next.js', 'Vue.js', 'TypeScript', 'NestJS', 'PostgreSQL', 'Docker', 'Git'].map((tool, index) => (
+                    <div key={tool} className="bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-105">
+                      <span className="text-white font-medium">{tool}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
 
-            {/* Developer Skills logos - First row */}
-            <div className="flex justify-center gap-6 mb-3 py-6">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/8c30482b5faadfe94dc0043b1fb53273e666f37e?width=120"
-                alt="JavaScript"
-                className="w-15 h-15 rounded-lg"
-              />
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/a4f9d599e91d0c7e7b2e33287dfb2b7e5e22a705?width=120"
-                alt="Vue"
-                className="w-15 h-15 rounded-lg"
-              />
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/17acb683d46681fe3758e2d7f9688e6f477565e5?width=120"
-                alt="React"
-                className="w-15 h-15 rounded-lg"
-              />
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/bb77778087c005fc355c38521f8894c900953da4?width=120"
-                alt="Tailwind"
-                className="w-15 h-15 rounded-lg"
-              />
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/5f243c837c53896ea16b6066a6131804f7c9c4cb?width=120"
-                alt="Next.js"
-                className="w-15 h-15 rounded-lg"
-              />
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/5d71ae57320549630760db9f07cdcc96e9472528?width=120"
-                alt="Ant Design"
-                className="w-15 h-15 rounded-lg"
-              />
-            </div>
-
-            {/* Developer Skills logos - Second row */}
-            <div className="flex justify-center gap-6 py-3">
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/5adbd0262ca08c966a6e995f20afb93feffbbd0c?width=120"
-                alt="Yarn"
-                className="w-15 h-15 rounded-lg"
-              />
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/1f1b246fb35fb844f8fe47419b90ee4bdbd15c96?width=120"
-                alt="Git"
-                className="w-15 h-15 rounded-lg"
-              />
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/8ce23d5ccaa4627cfcbccbe012354c1cf1054a90?width=120"
-                alt="Docker"
-                className="w-15 h-15 rounded-lg"
-              />
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/c4eadc1411c07f586c00ecbdfd11636cfd084b11?width=120"
-                alt="GraphQL"
-                className="w-15 h-15 rounded-lg"
-              />
-              <img
-                src="https://api.builder.io/api/v1/image/assets/TEMP/0059f3aae54f6b8d62c7f320a40a004e7a3259d1?width=120"
-                alt="PHP"
-                className="w-15 h-15 rounded-lg"
-              />
+            {/* Achievements & Stats */}
+            <div className="grid md:grid-cols-3 gap-8 mb-16">
+              <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-200">
+                <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300">
+                  <div className="text-4xl font-bold text-cyan-400 mb-2">50+</div>
+                  <div className="text-gray-300">Projects Completed</div>
+                </div>
+              </div>
+              <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-400">
+                <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300">
+                  <div className="text-4xl font-bold text-purple-400 mb-2">3+</div>
+                  <div className="text-gray-300">Years Experience</div>
+                </div>
+              </div>
+              <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-600">
+                <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300">
+                  <div className="text-4xl font-bold text-pink-400 mb-2">100%</div>
+                  <div className="text-gray-300">Client Satisfaction</div>
+                </div>
+              </div>
             </div>
           </div>
         </section>
 
         {/* Footer */}
-        <footer className="px-4 md:px-60 py-12">
-          <div className="relative" style={{ height: "35px" }}>
-            <div
-              className="absolute left-0 top-0"
-              style={{
-                width: "100%",
-                height: "1px",
-                background:
-                  "linear-gradient(267deg, #00F0FF 4.01%, #5200FF 57.55%, #FF2DF7 114.97%)",
-              }}
-            ></div>
-            <p
-              className="font-poppins text-white text-base absolute left-0"
-              style={{
-                top: "11px",
-                width: "454px",
-                height: "24px",
-              }}
-            >
-              Copyright © 2025 RATTANACODE888. All rights reserved.
-            </p>
+        <footer className="px-4 md:px-60 py-16 relative">
+          <div className="relative z-10">
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-white mb-4">Ready to Start Your Project?</h3>
+              <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+                Let's work together to bring your ideas to life with modern design and cutting-edge technology.
+              </p>
+              <button
+                onClick={() => setIsContactModalOpen(true)}
+                className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/50"
+              >
+                Get Started Today
+              </button>
+            </div>
+            
+            <div className="border-t border-gray-700 pt-8">
+              <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                <p className="font-poppins text-gray-400 text-sm">
+                  Copyright © 2025 RATTANACODE888. All rights reserved.
+                </p>
+                <div className="flex gap-6">
+                  <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Privacy Policy</a>
+                  <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Terms of Service</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          {/* Background Elements */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
           </div>
         </footer>
       </div>
