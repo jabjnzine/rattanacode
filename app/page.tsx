@@ -405,24 +405,26 @@ export default function Hone() {
           <div className="relative z-10 max-w-4xl w-full px-4 sm:px-0">
             <div className="mb-8 animate-in slide-in-from-left-4 fade-in duration-1000">
               <h1 className="font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-light text-white mb-4 tracking-tight">
-                <span className="bg-gradient-to-r from-white via-cyan-200 to-purple-200 bg-clip-text text-transparent">
-              RattanaCode888
+                <span className="bg-gradient-to-r from-white via-cyan-200 to-purple-200 bg-clip-text text-transparent animate-pulse">
+                  RattanaCode888
                 </span>
-            </h1>
-              <p className="font-poppins text-gray-300 text-lg sm:text-xl md:text-2xl leading-relaxed">
-              Design & Code That Grows With You
-            </p>
-          </div>
+              </h1>
+              <p className="font-poppins text-gray-300 text-lg sm:text-xl md:text-2xl leading-relaxed hover:text-cyan-300 transition-colors duration-300">
+                Design & Code That Grows With You
+              </p>
+            </div>
 
-          <div
-              className="mb-8 w-full max-w-[615px] animate-in slide-in-from-left-4 fade-in duration-1000 delay-300"
-            style={{
+            <div
+              className="mb-8 w-full max-w-[615px] animate-in slide-in-from-left-4 fade-in duration-1000 delay-300 relative overflow-hidden"
+              style={{
                 height: "2px",
-              background:
-                "linear-gradient(267deg, #00F0FF 4.01%, #5200FF 57.55%, #FF2DF7 114.97%)",
+                background:
+                  "linear-gradient(267deg, #00F0FF 4.01%, #5200FF 57.55%, #FF2DF7 114.97%)",
                 boxShadow: "0 0 20px rgba(0, 240, 255, 0.3)",
-            }}
-          ></div>
+              }}
+            >
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white to-transparent animate-pulse"></div>
+            </div>
 
             <div className="animate-in slide-in-from-left-4 fade-in duration-1000 delay-500">
           <button
@@ -896,9 +898,10 @@ export default function Hone() {
                     (tool, index) => (
                       <div
                         key={index}
-                        className="bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105"
+                        className="bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105 hover:rotate-1 group cursor-pointer"
+                        style={{ animationDelay: `${index * 100}ms` }}
                       >
-                        <span className="text-white font-medium">{tool}</span>
+                        <span className="text-white font-medium group-hover:text-cyan-300 transition-colors duration-300">{tool}</span>
                       </div>
                     )
                   )}
@@ -923,9 +926,10 @@ export default function Hone() {
                   ].map((tool, index) => (
                     <div
                       key={index}
-                      className="bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-105"
+                      className="bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 hover:-rotate-1 group cursor-pointer"
+                      style={{ animationDelay: `${index * 100}ms` }}
                     >
-                      <span className="text-white font-medium">{tool}</span>
+                      <span className="text-white font-medium group-hover:text-purple-300 transition-colors duration-300">{tool}</span>
                     </div>
                   ))}
                 </div>
@@ -936,46 +940,128 @@ export default function Hone() {
             <div className="mb-16">
               <h3 className="text-2xl font-bold text-white text-center mb-12">
                 My Process
-            </h3>
-              <div className="grid md:grid-cols-4 gap-6">
-                <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-200">
-                  <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
-                    1
+              </h3>
+              <div className="relative">
+                {/* Desktop: Horizontal layout with connecting lines */}
+                <div className="hidden md:grid md:grid-cols-4 gap-6 relative">
+                  {/* Connecting lines */}
+                  <div className="absolute top-8 left-8 right-8 h-0.5 bg-gradient-to-r from-cyan-500 via-purple-500 via-pink-500 to-green-500 opacity-60"></div>
+                  <div className="absolute top-8 left-8 right-8 h-0.5 bg-gradient-to-r from-cyan-500/30 via-purple-500/30 via-pink-500/30 to-green-500/30 blur-sm"></div>
+                  
+                  {/* Dots between steps */}
+                  <div className="absolute top-6 left-1/4 w-2 h-2 bg-cyan-500 rounded-full opacity-60"></div>
+                  <div className="absolute top-6 left-1/2 w-2 h-2 bg-purple-500 rounded-full opacity-60"></div>
+                  <div className="absolute top-6 left-3/4 w-2 h-2 bg-pink-500 rounded-full opacity-60"></div>
+                  
+                  <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-200 group hover:scale-105 transition-all duration-300 relative z-10">
+                    <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4 group-hover:animate-bounce shadow-lg">
+                      1
+                    </div>
+                    <h4 className="text-white font-semibold mb-2 group-hover:text-cyan-300 transition-colors duration-300">Discovery</h4>
+                    <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
+                      Understanding your needs and goals
+                    </p>
                   </div>
-                  <h4 className="text-white font-semibold mb-2">Discovery</h4>
-                  <p className="text-gray-400 text-sm">
-                    Understanding your needs and goals
-                  </p>
+                  
+                  <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-400 group hover:scale-105 transition-all duration-300 relative z-10">
+                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4 group-hover:animate-bounce shadow-lg">
+                      2
+                    </div>
+                    <h4 className="text-white font-semibold mb-2 group-hover:text-purple-300 transition-colors duration-300">Design</h4>
+                    <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
+                      Creating wireframes and prototypes
+                    </p>
+                  </div>
+                  
+                  <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-600 group hover:scale-105 transition-all duration-300 relative z-10">
+                    <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4 group-hover:animate-bounce shadow-lg">
+                      3
+                    </div>
+                    <h4 className="text-white font-semibold mb-2 group-hover:text-pink-300 transition-colors duration-300">Develop</h4>
+                    <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
+                      Building with modern technologies
+                    </p>
+                  </div>
+                  
+                  <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-800 group hover:scale-105 transition-all duration-300 relative z-10">
+                    <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4 group-hover:animate-bounce shadow-lg">
+                      4
+                    </div>
+                    <h4 className="text-white font-semibold mb-2 group-hover:text-green-300 transition-colors duration-300">Deploy</h4>
+                    <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
+                      Launch and ongoing support
+                    </p>
+                  </div>
                 </div>
-                <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-400">
-                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
-                    2
+
+                {/* Mobile: Vertical layout with connecting lines */}
+                <div className="md:hidden relative">
+                  <div className="space-y-12">
+                    <div className="flex items-start gap-6 animate-in slide-in-from-left-4 fade-in duration-1000 delay-200 group relative">
+                      <div className="flex-shrink-0 relative z-10">
+                        <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl group-hover:animate-bounce shadow-lg">
+                          1
+                        </div>
+                        {/* Connecting line to next step */}
+                        <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-cyan-500 to-purple-500 opacity-40"></div>
+                      </div>
+                      <div className="flex-1 pt-2">
+                        <h4 className="text-white font-semibold mb-2 group-hover:text-cyan-300 transition-colors duration-300">Discovery</h4>
+                        <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
+                          Understanding your needs and goals
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-6 animate-in slide-in-from-right-4 fade-in duration-1000 delay-400 group relative">
+                      <div className="flex-shrink-0 relative z-10">
+                        <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-xl group-hover:animate-bounce shadow-lg">
+                          2
+                        </div>
+                        {/* Connecting line to next step */}
+                        <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-purple-500 to-pink-500 opacity-40"></div>
+                      </div>
+                      <div className="flex-1 pt-2">
+                        <h4 className="text-white font-semibold mb-2 group-hover:text-purple-300 transition-colors duration-300">Design</h4>
+                        <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
+                          Creating wireframes and prototypes
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-6 animate-in slide-in-from-left-4 fade-in duration-1000 delay-600 group relative">
+                      <div className="flex-shrink-0 relative z-10">
+                        <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl group-hover:animate-bounce shadow-lg">
+                          3
+                        </div>
+                        {/* Connecting line to next step */}
+                        <div className="absolute top-16 left-1/2 transform -translate-x-1/2 w-0.5 h-12 bg-gradient-to-b from-pink-500 to-green-500 opacity-40"></div>
+                      </div>
+                      <div className="flex-1 pt-2">
+                        <h4 className="text-white font-semibold mb-2 group-hover:text-pink-300 transition-colors duration-300">Develop</h4>
+                        <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
+                          Building with modern technologies
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-6 animate-in slide-in-from-right-4 fade-in duration-1000 delay-800 group">
+                      <div className="flex-shrink-0 relative z-10">
+                        <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-xl group-hover:animate-bounce shadow-lg">
+                          4
+                        </div>
+                      </div>
+                      <div className="flex-1 pt-2">
+                        <h4 className="text-white font-semibold mb-2 group-hover:text-green-300 transition-colors duration-300">Deploy</h4>
+                        <p className="text-gray-400 text-sm group-hover:text-gray-300 transition-colors duration-300">
+                          Launch and ongoing support
+                        </p>
+                      </div>
+                    </div>
                   </div>
-                  <h4 className="text-white font-semibold mb-2">Design</h4>
-                  <p className="text-gray-400 text-sm">
-                    Creating wireframes and prototypes
-                  </p>
                 </div>
-                <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-600">
-                  <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
-                    3
-                  </div>
-                  <h4 className="text-white font-semibold mb-2">Develop</h4>
-                  <p className="text-gray-400 text-sm">
-                    Building with modern technologies
-                  </p>
-                </div>
-                <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-800">
-                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
-                    4
-                  </div>
-                  <h4 className="text-white font-semibold mb-2">Deploy</h4>
-                  <p className="text-gray-400 text-sm">
-                    Launch and ongoing support
-              </p>
+              </div>
             </div>
-          </div>
-          </div>
         </div>
       </section>
 
@@ -992,9 +1078,21 @@ export default function Hone() {
               </p>
               <button
                 onClick={() => setIsContactModalOpen(true)}
-                className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/50"
+                className="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-8 py-4 rounded-full font-semibold text-lg hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/50 relative overflow-hidden group"
               >
-                Get Started Today
+                <span className="relative z-10 flex items-center gap-2">
+                  Get Started Today
+                  <svg 
+                    className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    viewBox="0 0 24 24"
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <div className="absolute inset-0 bg-white/20 transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-700"></div>
               </button>
             </div>
 
