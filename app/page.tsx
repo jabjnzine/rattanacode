@@ -190,22 +190,22 @@ export default function Hone() {
       )}
 
       <div className="min-h-screen w-full bg-dark-bg text-white">
-        {/* Header */}
+      {/* Header */}
         <header className="grid grid-cols-[auto_1fr_auto] items-center px-4 md:px-60 py-6 fixed top-0 left-0 right-0 z-50 bg-dark-bg">
-          {/* Left: Logo */}
-          <div className="flex items-center">
+        {/* Left: Logo */}
+        <div className="flex items-center">
             <Image
-              src="https://api.builder.io/api/v1/image/assets/TEMP/45c59019d7170faaba6e29a3fe3d988f9d11744f?width=206"
-              alt="Logo"
+            src="https://api.builder.io/api/v1/image/assets/TEMP/45c59019d7170faaba6e29a3fe3d988f9d11744f?width=206"
+            alt="Logo"
               width={100}
               height={40}
-              className="h-10"
-            />
-          </div>
+            className="h-10"
+          />
+        </div>
 
           {/* Center: Nav - Desktop */}
-          <nav className="hidden md:flex items-center justify-center gap-8">
-            <div
+        <nav className="hidden md:flex items-center justify-center gap-8">
+          <div
               className={`flex items-center gap-3 px-2 py-2 ${
                 activeSection === "home" ? "border-b" : ""
               }`}
@@ -227,7 +227,7 @@ export default function Hone() {
               >
                 HOME
               </span>
-            </div>
+          </div>
             <div
               className={`flex items-center gap-3 px-2 py-2 ${
                 activeSection === "service-section" ? "border-b" : ""
@@ -254,7 +254,7 @@ export default function Hone() {
               >
                 SERVICE
               </span>
-            </div>
+          </div>
             <div
               className={`flex items-center gap-3 px-2 py-2 ${
                 activeSection === "skills-section" ? "border-b" : ""
@@ -281,8 +281,8 @@ export default function Hone() {
               >
                 SKILLS
               </span>
-            </div>
-          </nav>
+          </div>
+        </nav>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden">
@@ -310,22 +310,22 @@ export default function Hone() {
             </button>
           </div>
 
-          {/* Right: Contact */}
-          <div className="flex justify-end">
-            <button
+        {/* Right: Contact */}
+        <div className="flex justify-end">
+          <button
               className="font-actor text-white text-base"
-              style={{
+            style={{
                 width: "70px",
                 height: "34px",
                 borderRadius: "8px",
-                border: "0.599px solid #9E9C9C",
-              }}
+              border: "0.599px solid #9E9C9C",
+            }}
               onClick={() => setIsContactModalOpen(true)}
-            >
-              Contact
-            </button>
-          </div>
-        </header>
+          >
+            Contact
+          </button>
+        </div>
+      </header>
 
         {/* Mobile Menu Dropdown */}
         {mobileMenuOpen && (
@@ -381,20 +381,20 @@ export default function Hone() {
           </div>
         )}
 
-        {/* Hero Section */}
-        <section
+      {/* Hero Section */}
+      <section
           className="px-4 md:px-60 py-12 min-h-screen flex items-center relative isolate pt-20 overflow-hidden"
-          style={{
+        style={{
             backgroundImage: "url('/hero_section.png')",
-            backgroundSize: "cover",
+          backgroundSize: "cover",
             backgroundPosition: "bottom",
-            backgroundRepeat: "no-repeat",
-          }}
-        >
-          <div
-            className="absolute inset-0 bg-[#090D18]/70"
-            aria-hidden="true"
-          ></div>
+          backgroundRepeat: "no-repeat",
+        }}
+      >
+        <div
+          className="absolute inset-0 bg-[#090D18]/70"
+          aria-hidden="true"
+        ></div>
 
           {/* Animated Background Elements */}
           <div className="absolute inset-0 overflow-hidden">
@@ -406,31 +406,31 @@ export default function Hone() {
             <div className="mb-8 animate-in slide-in-from-left-4 fade-in duration-1000">
               <h1 className="font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-light text-white mb-4 tracking-tight">
                 <span className="bg-gradient-to-r from-white via-cyan-200 to-purple-200 bg-clip-text text-transparent">
-                  RattanaCode888
+              RattanaCode888
                 </span>
-              </h1>
+            </h1>
               <p className="font-poppins text-gray-300 text-lg sm:text-xl md:text-2xl leading-relaxed">
-                Design & Code That Grows With You
-              </p>
-            </div>
+              Design & Code That Grows With You
+            </p>
+          </div>
 
-            <div
+          <div
               className="mb-8 w-full max-w-[615px] animate-in slide-in-from-left-4 fade-in duration-1000 delay-300"
-              style={{
+            style={{
                 height: "2px",
-                background:
-                  "linear-gradient(267deg, #00F0FF 4.01%, #5200FF 57.55%, #FF2DF7 114.97%)",
+              background:
+                "linear-gradient(267deg, #00F0FF 4.01%, #5200FF 57.55%, #FF2DF7 114.97%)",
                 boxShadow: "0 0 20px rgba(0, 240, 255, 0.3)",
-              }}
-            ></div>
+            }}
+          ></div>
 
             <div className="animate-in slide-in-from-left-4 fade-in duration-1000 delay-500">
-              <button
+          <button
                 onClick={() => setIsContactModalOpen(true)}
                 className="cursor-pointer inline-flex items-center justify-center gap-3 text-white font-montserrat w-full sm:w-[219px] relative group transition-all duration-300 hover:scale-105 active:scale-95"
-                style={{
-                  height: "45.819px",
-                  borderRadius: "23.298px",
+            style={{
+              height: "45.819px",
+              borderRadius: "23.298px",
                   background: "transparent",
                   border: "none",
                 }}
@@ -452,43 +452,43 @@ export default function Hone() {
                     }}
                   >
                     <span className="text-lg font-semibold">Contact Now</span>
-                    <svg
-                      width="19"
-                      height="19"
-                      viewBox="0 0 19 19"
-                      fill="none"
-                      xmlns="http://www.w3.org/2000/svg"
-                    >
-                      <path
-                        d="M3.29688 9.38734H15.7224M10.2862 3.95117L15.7224 9.38734L10.2862 14.8235"
-                        stroke="url(#paint0_linear)"
-                        strokeWidth="1.55319"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      />
-                      <defs>
-                        <linearGradient
-                          id="paint0_linear"
-                          x1="15.0416"
-                          y1="1.31545"
-                          x2="0.589464"
-                          y2="2.17268"
-                          gradientUnits="userSpaceOnUse"
-                        >
-                          <stop stopColor="#00F0FF" />
-                          <stop offset="0.482483" stopColor="#5200FF" />
-                          <stop offset="1" stopColor="#FF2DF7" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
+            <svg
+              width="19"
+              height="19"
+              viewBox="0 0 19 19"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M3.29688 9.38734H15.7224M10.2862 3.95117L15.7224 9.38734L10.2862 14.8235"
+                stroke="url(#paint0_linear)"
+                strokeWidth="1.55319"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+              <defs>
+                <linearGradient
+                  id="paint0_linear"
+                  x1="15.0416"
+                  y1="1.31545"
+                  x2="0.589464"
+                  y2="2.17268"
+                  gradientUnits="userSpaceOnUse"
+                >
+                  <stop stopColor="#00F0FF" />
+                  <stop offset="0.482483" stopColor="#5200FF" />
+                  <stop offset="1" stopColor="#FF2DF7" />
+                </linearGradient>
+              </defs>
+            </svg>
                   </div>
                 </div>
-              </button>
+          </button>
             </div>
-          </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Service Section */}
+      {/* Service Section */}
         <section
           id="service-section"
           className="px-4 md:px-60 py-16 md:py-20 relative"
@@ -504,24 +504,24 @@ export default function Hone() {
               <h2 className="font-poppins text-4xl md:text-5xl font-bold mb-4">
                 <span
                   className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
-                  style={{
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  Service
+            style={{
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            Service
                 </span>
-              </h2>
+          </h2>
               <p className="font-poppins text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
                 Optimize your business with user-friendly, scalable, and
                 efficient digital solutions.
-              </p>
-            </div>
+          </p>
+        </div>
 
             <div className="flex flex-col lg:flex-row justify-center gap-8 md:gap-10">
-              {/* Website Design & Development Card */}
-              <div
+          {/* Website Design & Development Card */}
+          <div
                 className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 pb-8 flex flex-col w-full max-w-[450px] border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/20 animate-in slide-in-from-left-4 fade-in duration-1000 delay-200"
                 style={{
                   height: "auto",
@@ -540,9 +540,9 @@ export default function Hone() {
                   <h3
                     className="font-poppins text-white text-xl font-bold mb-4"
                     style={{ lineHeight: "28px" }}
-                  >
-                    Website Design & Development
-                  </h3>
+              >
+                Website Design & Development
+              </h3>
                   <div className="font-poppins text-gray-300 text-base leading-7 mb-8 flex-1 space-y-2">
                     <p className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
@@ -559,9 +559,9 @@ export default function Hone() {
                     <p className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
                       Custom Business Software for small and large enterprises
-                    </p>
-                  </div>
-                  <button
+                </p>
+              </div>
+              <button
                     onClick={() => {
                       window.open(
                         "https://sppkng1998.wixsite.com/my-portfolio",
@@ -587,7 +587,7 @@ export default function Hone() {
                     >
                       <div
                         className="w-full h-full flex items-center justify-center gap-3"
-                        style={{
+                style={{
                           background: "rgba(9, 13, 24, 0.9)",
                           borderRadius: "25px",
                         }}
@@ -597,44 +597,44 @@ export default function Hone() {
                         </span>
                         <svg
                           className="ml-3"
-                          width="19"
-                          height="19"
-                          viewBox="0 0 19 19"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M3.29688 9.38734H15.7224M10.2862 3.95117L15.7224 9.38734L10.2862 14.8235"
-                            stroke="url(#paint0_linear2)"
-                            strokeWidth="1.55319"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <defs>
-                            <linearGradient
-                              id="paint0_linear2"
-                              x1="15.0416"
-                              y1="1.31545"
-                              x2="0.589464"
-                              y2="2.17268"
-                              gradientUnits="userSpaceOnUse"
-                            >
-                              <stop stopColor="#00F0FF" />
-                              <stop offset="0.482483" stopColor="#5200FF" />
-                              <stop offset="1" stopColor="#FF2DF7" />
-                            </linearGradient>
-                          </defs>
-                        </svg>
+                  width="19"
+                  height="19"
+                  viewBox="0 0 19 19"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.29688 9.38734H15.7224M10.2862 3.95117L15.7224 9.38734L10.2862 14.8235"
+                    stroke="url(#paint0_linear2)"
+                    strokeWidth="1.55319"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear2"
+                      x1="15.0416"
+                      y1="1.31545"
+                      x2="0.589464"
+                      y2="2.17268"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stopColor="#00F0FF" />
+                      <stop offset="0.482483" stopColor="#5200FF" />
+                      <stop offset="1" stopColor="#FF2DF7" />
+                    </linearGradient>
+                  </defs>
+                </svg>
                       </div>
                     </div>
-                  </button>
-                </div>
-              </div>
+              </button>
+            </div>
+          </div>
 
-              {/* Graphic Design & Artwork Card */}
-              <div
+          {/* Graphic Design & Artwork Card */}
+          <div
                 className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 pb-8 flex flex-col w-full max-w-[450px] border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-pink-500/20 animate-in slide-in-from-right-4 fade-in duration-1000 delay-400"
-                style={{
+            style={{
                   height: "auto",
                 }}
               >
@@ -651,9 +651,9 @@ export default function Hone() {
                   <h3
                     className="font-poppins text-white text-xl font-bold mb-4"
                     style={{ lineHeight: "28px" }}
-                  >
-                    Graphic Design & Artwork
-                  </h3>
+              >
+                Graphic Design & Artwork
+              </h3>
                   <div className="font-poppins text-gray-300 text-base leading-7 mb-8 flex-1 space-y-2">
                     <p className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-pink-400 rounded-full"></span>
@@ -663,8 +663,8 @@ export default function Hone() {
                       <span className="w-2 h-2 bg-pink-400 rounded-full"></span>
                       More – Designed to Make an Impact
                     </p>
-                  </div>
-                  <button
+              </div>
+              <button
                     onClick={() => {
                       window.open(
                         "https://drive.google.com/drive/folders/1-2YVCt3Fh2OIhK61JnEnXTRt4WuUAW3K",
@@ -690,7 +690,7 @@ export default function Hone() {
                     >
                       <div
                         className="w-full h-full flex items-center justify-center gap-3"
-                        style={{
+                style={{
                           background: "rgba(9, 13, 24, 0.9)",
                           borderRadius: "25px",
                         }}
@@ -700,44 +700,44 @@ export default function Hone() {
                         </span>
                         <svg
                           className="ml-3"
-                          width="19"
-                          height="19"
-                          viewBox="0 0 19 19"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M3.29688 9.38734H15.7224M10.2862 3.95117L15.7224 9.38734L10.2862 14.8235"
-                            stroke="url(#paint0_linear3)"
-                            strokeWidth="1.55319"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                          <defs>
-                            <linearGradient
-                              id="paint0_linear3"
-                              x1="15.0416"
-                              y1="1.31545"
-                              x2="0.589464"
-                              y2="2.17268"
-                              gradientUnits="userSpaceOnUse"
-                            >
-                              <stop stopColor="#00F0FF" />
-                              <stop offset="0.482483" stopColor="#5200FF" />
-                              <stop offset="1" stopColor="#FF2DF7" />
-                            </linearGradient>
-                          </defs>
-                        </svg>
+                  width="19"
+                  height="19"
+                  viewBox="0 0 19 19"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M3.29688 9.38734H15.7224M10.2862 3.95117L15.7224 9.38734L10.2862 14.8235"
+                    stroke="url(#paint0_linear3)"
+                    strokeWidth="1.55319"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                  <defs>
+                    <linearGradient
+                      id="paint0_linear3"
+                      x1="15.0416"
+                      y1="1.31545"
+                      x2="0.589464"
+                      y2="2.17268"
+                      gradientUnits="userSpaceOnUse"
+                    >
+                      <stop stopColor="#00F0FF" />
+                      <stop offset="0.482483" stopColor="#5200FF" />
+                      <stop offset="1" stopColor="#FF2DF7" />
+                    </linearGradient>
+                  </defs>
+                </svg>
                       </div>
                     </div>
-                  </button>
+              </button>
                 </div>
-              </div>
             </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        {/* Skills Section */}
+      {/* Skills Section */}
         <section
           id="skills-section"
           className="px-4 md:px-60 py-16 md:py-20 relative"
@@ -753,15 +753,15 @@ export default function Hone() {
               <h2 className="font-poppins text-4xl md:text-5xl font-bold mb-4">
                 <span
                   className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
-                  style={{
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  Skills
+            style={{
+              WebkitBackgroundClip: "text",
+              WebkitTextFillColor: "transparent",
+              backgroundClip: "text",
+            }}
+          >
+            Skills
                 </span>
-              </h2>
+          </h2>
               <p className="font-poppins text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
                 Professional expertise in modern technologies and design tools
               </p>
@@ -803,8 +803,8 @@ export default function Hone() {
                         />
                       </svg>
                     </div>
-                    UX / UI Design
-                  </h3>
+              UX / UI Design
+            </h3>
                   <div className="space-y-3">
                     <p className="text-gray-300 text-lg">
                       User experience & user interface design
@@ -824,8 +824,8 @@ export default function Hone() {
                       </p>
                     </div>
                   </div>
-                </div>
-              </div>
+            </div>
+          </div>
 
               {/* Developer Skills */}
               <div className="animate-in slide-in-from-right-4 fade-in duration-1000 delay-400">
@@ -878,7 +878,7 @@ export default function Hone() {
                   </div>
                 </div>
               </div>
-            </div>
+          </div>
 
             {/* Technology Stack */}
             <div className="mb-16">
@@ -887,7 +887,7 @@ export default function Hone() {
               </h3>
 
               {/* Design Tools */}
-              <div className="mb-8">
+          <div className="mb-8">
                 <h4 className="text-lg font-semibold text-cyan-400 mb-4 text-center">
                   Design Tools
                 </h4>
@@ -936,7 +936,7 @@ export default function Hone() {
             <div className="mb-16">
               <h3 className="text-2xl font-bold text-white text-center mb-12">
                 My Process
-              </h3>
+            </h3>
               <div className="grid md:grid-cols-4 gap-6">
                 <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-200">
                   <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
@@ -972,14 +972,14 @@ export default function Hone() {
                   <h4 className="text-white font-semibold mb-2">Deploy</h4>
                   <p className="text-gray-400 text-sm">
                     Launch and ongoing support
-                  </p>
-                </div>
-              </div>
+              </p>
             </div>
           </div>
-        </section>
+          </div>
+        </div>
+      </section>
 
-        {/* Footer */}
+      {/* Footer */}
         <footer className="px-4 md:px-60 py-16 relative">
           <div className="relative z-10">
             <div className="text-center mb-8">
@@ -1001,8 +1001,8 @@ export default function Hone() {
             <div className="border-t border-gray-700 pt-8">
               <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                 <p className="font-poppins text-gray-400 text-sm">
-                  Copyright © 2025 RATTANACODE888. All rights reserved.
-                </p>
+            Copyright © 2025 RATTANACODE888. All rights reserved.
+          </p>
                 <div className="flex gap-6">
                   <a
                     href="#"
@@ -1024,9 +1024,9 @@ export default function Hone() {
           {/* Background Elements */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
-          </div>
-        </footer>
-      </div>
+        </div>
+      </footer>
+    </div>
     </>
   );
 }
