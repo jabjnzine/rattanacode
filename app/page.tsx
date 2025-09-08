@@ -665,6 +665,12 @@ export default function Hone() {
                     </p>
                   </div>
                   <button
+                    onClick={() => {
+                      window.open(
+                        "https://drive.google.com/drive/folders/1-2YVCt3Fh2OIhK61JnEnXTRt4WuUAW3K",
+                        "_blank"
+                      );
+                    }}
                     className="cursor-pointer flex items-center justify-center text-white font-montserrat relative w-full group transition-all duration-300 hover:scale-105 active:scale-95"
                     style={{
                       height: "50px",
