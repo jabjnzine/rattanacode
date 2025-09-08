@@ -197,7 +197,7 @@ export default function Hone() {
             <Image
               src="https://api.builder.io/api/v1/image/assets/TEMP/45c59019d7170faaba6e29a3fe3d988f9d11744f?width=206"
               alt="Logo"
-              width={206}
+              width={100}
               height={40}
               className="h-10"
             />
