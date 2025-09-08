@@ -39,11 +39,11 @@ export default function Hone() {
     <>
       {/* Custom Contact Modal */}
       {isContactModalOpen && (
-        <div 
+        <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-300"
           onClick={() => setIsContactModalOpen(false)}
         >
-          <div 
+          <div
             className="bg-gray-800 rounded-xl p-8 max-w-md w-full mx-4 relative shadow-2xl border border-gray-700 animate-in zoom-in-95 slide-in-from-bottom-4 duration-300"
             onClick={(e) => e.stopPropagation()}
           >
@@ -79,7 +79,9 @@ export default function Hone() {
               </div>
               <div className="text-center">
                 <h2 className="text-3xl font-bold text-white mb-2">Contact</h2>
-                <p className="text-gray-400 text-sm font-medium tracking-wider">GET IN TOUCH</p>
+                <p className="text-gray-400 text-sm font-medium tracking-wider">
+                  GET IN TOUCH
+                </p>
               </div>
             </div>
 
@@ -105,10 +107,10 @@ export default function Hone() {
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <p className="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">PHONE</p>
-                  <p className="text-white text-lg font-bold">
-                    098-463-0999
+                  <p className="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">
+                    PHONE
                   </p>
+                  <p className="text-white text-lg font-bold">098-463-0999</p>
                 </div>
               </div>
 
@@ -139,10 +141,10 @@ export default function Hone() {
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <p className="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">WHATSAPP</p>
-                  <p className="text-white text-lg font-bold">
-                    098-463-0999
+                  <p className="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">
+                    WHATSAPP
                   </p>
+                  <p className="text-white text-lg font-bold">098-463-0999</p>
                 </div>
               </div>
 
@@ -173,7 +175,9 @@ export default function Hone() {
                   </svg>
                 </div>
                 <div className="flex-1">
-                  <p className="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">EMAIL</p>
+                  <p className="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">
+                    EMAIL
+                  </p>
                   <p className="text-white text-lg font-bold">
                     Spp.kng1998@gmail.com
                   </p>
@@ -388,13 +392,13 @@ export default function Hone() {
             className="absolute inset-0 bg-[#090D18]/70"
             aria-hidden="true"
           ></div>
-          
+
           {/* Animated Background Elements */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-pink-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
           </div>
-          
+
           <div className="relative z-10 max-w-4xl w-full px-4 sm:px-0">
             <div className="mb-8 animate-in slide-in-from-left-4 fade-in duration-1000">
               <h1 className="font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-light text-white mb-4 tracking-tight">
@@ -428,67 +432,70 @@ export default function Hone() {
                   border: "none",
                 }}
               >
-              <div
-                className="absolute inset-0 group-hover:shadow-lg group-hover:shadow-cyan-500/50 transition-all duration-300"
-                style={{
-                  background:
-                    "linear-gradient(90deg, #00F0FF 0%, #5200FF 50%, #FF2DF7 100%)",
-                  padding: "1px",
-                  borderRadius: "23.298px",
-                }}
-              >
                 <div
-                  className="w-full h-full flex items-center justify-center gap-3"
+                  className="absolute inset-0 group-hover:shadow-lg group-hover:shadow-cyan-500/50 transition-all duration-300"
                   style={{
-                    background: "rgba(9, 13, 24, 0.9)",
+                    background:
+                      "linear-gradient(90deg, #00F0FF 0%, #5200FF 50%, #FF2DF7 100%)",
+                    padding: "1px",
                     borderRadius: "23.298px",
                   }}
                 >
-                  <span className="text-lg font-semibold">Contact Now</span>
-                  <svg
-                    width="19"
-                    height="19"
-                    viewBox="0 0 19 19"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
+                  <div
+                    className="w-full h-full flex items-center justify-center gap-3"
+                    style={{
+                      background: "rgba(9, 13, 24, 0.9)",
+                      borderRadius: "23.298px",
+                    }}
                   >
-                    <path
-                      d="M3.29688 9.38734H15.7224M10.2862 3.95117L15.7224 9.38734L10.2862 14.8235"
-                      stroke="url(#paint0_linear)"
-                      strokeWidth="1.55319"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <defs>
-                      <linearGradient
-                        id="paint0_linear"
-                        x1="15.0416"
-                        y1="1.31545"
-                        x2="0.589464"
-                        y2="2.17268"
-                        gradientUnits="userSpaceOnUse"
-                      >
-                        <stop stopColor="#00F0FF" />
-                        <stop offset="0.482483" stopColor="#5200FF" />
-                        <stop offset="1" stopColor="#FF2DF7" />
-                      </linearGradient>
-                    </defs>
-                  </svg>
+                    <span className="text-lg font-semibold">Contact Now</span>
+                    <svg
+                      width="19"
+                      height="19"
+                      viewBox="0 0 19 19"
+                      fill="none"
+                      xmlns="http://www.w3.org/2000/svg"
+                    >
+                      <path
+                        d="M3.29688 9.38734H15.7224M10.2862 3.95117L15.7224 9.38734L10.2862 14.8235"
+                        stroke="url(#paint0_linear)"
+                        strokeWidth="1.55319"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <defs>
+                        <linearGradient
+                          id="paint0_linear"
+                          x1="15.0416"
+                          y1="1.31545"
+                          x2="0.589464"
+                          y2="2.17268"
+                          gradientUnits="userSpaceOnUse"
+                        >
+                          <stop stopColor="#00F0FF" />
+                          <stop offset="0.482483" stopColor="#5200FF" />
+                          <stop offset="1" stopColor="#FF2DF7" />
+                        </linearGradient>
+                      </defs>
+                    </svg>
+                  </div>
                 </div>
-              </div>
-            </button>
+              </button>
             </div>
           </div>
         </section>
 
         {/* Service Section */}
-        <section id="service-section" className="px-4 md:px-60 py-16 md:py-20 relative">
+        <section
+          id="service-section"
+          className="px-4 md:px-60 py-16 md:py-20 relative"
+        >
           {/* Background Elements */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute top-20 right-20 w-60 h-60 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
             <div className="absolute bottom-20 left-20 w-60 h-60 bg-gradient-to-br from-pink-500/10 to-cyan-500/10 rounded-full blur-3xl"></div>
           </div>
-          
+
           <div className="relative z-10">
             <div className="mb-12 text-center animate-in slide-in-from-bottom-4 fade-in duration-1000">
               <h2 className="font-poppins text-4xl md:text-5xl font-bold mb-4">
@@ -504,8 +511,8 @@ export default function Hone() {
                 </span>
               </h2>
               <p className="font-poppins text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-                Optimize your business with user-friendly, scalable, and efficient
-                digital solutions.
+                Optimize your business with user-friendly, scalable, and
+                efficient digital solutions.
               </p>
             </div>
 
@@ -580,42 +587,44 @@ export default function Hone() {
                           borderRadius: "25px",
                         }}
                       >
-                        <span className="text-base font-semibold">View Details</span>
-                      <svg
-                        className="ml-3"
-                        width="19"
-                        height="19"
-                        viewBox="0 0 19 19"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.29688 9.38734H15.7224M10.2862 3.95117L15.7224 9.38734L10.2862 14.8235"
-                          stroke="url(#paint0_linear2)"
-                          strokeWidth="1.55319"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <defs>
-                          <linearGradient
-                            id="paint0_linear2"
-                            x1="15.0416"
-                            y1="1.31545"
-                            x2="0.589464"
-                            y2="2.17268"
-                            gradientUnits="userSpaceOnUse"
-                          >
-                            <stop stopColor="#00F0FF" />
-                            <stop offset="0.482483" stopColor="#5200FF" />
-                            <stop offset="1" stopColor="#FF2DF7" />
-                          </linearGradient>
-                        </defs>
-                      </svg>
+                        <span className="text-base font-semibold">
+                          View Details
+                        </span>
+                        <svg
+                          className="ml-3"
+                          width="19"
+                          height="19"
+                          viewBox="0 0 19 19"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M3.29688 9.38734H15.7224M10.2862 3.95117L15.7224 9.38734L10.2862 14.8235"
+                            stroke="url(#paint0_linear2)"
+                            strokeWidth="1.55319"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <defs>
+                            <linearGradient
+                              id="paint0_linear2"
+                              x1="15.0416"
+                              y1="1.31545"
+                              x2="0.589464"
+                              y2="2.17268"
+                              gradientUnits="userSpaceOnUse"
+                            >
+                              <stop stopColor="#00F0FF" />
+                              <stop offset="0.482483" stopColor="#5200FF" />
+                              <stop offset="1" stopColor="#FF2DF7" />
+                            </linearGradient>
+                          </defs>
+                        </svg>
+                      </div>
                     </div>
-                  </div>
-                </button>
+                  </button>
+                </div>
               </div>
-            </div>
 
               {/* Graphic Design & Artwork Card */}
               <div
@@ -673,54 +682,59 @@ export default function Hone() {
                           borderRadius: "25px",
                         }}
                       >
-                        <span className="text-base font-semibold">View Details</span>
-                      <svg
-                        className="ml-3"
-                        width="19"
-                        height="19"
-                        viewBox="0 0 19 19"
-                        fill="none"
-                        xmlns="http://www.w3.org/2000/svg"
-                      >
-                        <path
-                          d="M3.29688 9.38734H15.7224M10.2862 3.95117L15.7224 9.38734L10.2862 14.8235"
-                          stroke="url(#paint0_linear3)"
-                          strokeWidth="1.55319"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        />
-                        <defs>
-                          <linearGradient
-                            id="paint0_linear3"
-                            x1="15.0416"
-                            y1="1.31545"
-                            x2="0.589464"
-                            y2="2.17268"
-                            gradientUnits="userSpaceOnUse"
-                          >
-                            <stop stopColor="#00F0FF" />
-                            <stop offset="0.482483" stopColor="#5200FF" />
-                            <stop offset="1" stopColor="#FF2DF7" />
-                          </linearGradient>
-                        </defs>
-                      </svg>
+                        <span className="text-base font-semibold">
+                          View Details
+                        </span>
+                        <svg
+                          className="ml-3"
+                          width="19"
+                          height="19"
+                          viewBox="0 0 19 19"
+                          fill="none"
+                          xmlns="http://www.w3.org/2000/svg"
+                        >
+                          <path
+                            d="M3.29688 9.38734H15.7224M10.2862 3.95117L15.7224 9.38734L10.2862 14.8235"
+                            stroke="url(#paint0_linear3)"
+                            strokeWidth="1.55319"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                          <defs>
+                            <linearGradient
+                              id="paint0_linear3"
+                              x1="15.0416"
+                              y1="1.31545"
+                              x2="0.589464"
+                              y2="2.17268"
+                              gradientUnits="userSpaceOnUse"
+                            >
+                              <stop stopColor="#00F0FF" />
+                              <stop offset="0.482483" stopColor="#5200FF" />
+                              <stop offset="1" stopColor="#FF2DF7" />
+                            </linearGradient>
+                          </defs>
+                        </svg>
+                      </div>
                     </div>
-                  </div>
-                </button>
+                  </button>
+                </div>
               </div>
             </div>
           </div>
-        </div>
         </section>
 
         {/* Skills Section */}
-        <section id="skills-section" className="px-4 md:px-60 py-16 md:py-20 relative">
+        <section
+          id="skills-section"
+          className="px-4 md:px-60 py-16 md:py-20 relative"
+        >
           {/* Background Elements */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute top-20 left-20 w-60 h-60 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"></div>
             <div className="absolute bottom-20 right-20 w-60 h-60 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
           </div>
-          
+
           <div className="relative z-10">
             <div className="mb-12 text-center animate-in slide-in-from-bottom-4 fade-in duration-1000">
               <h2 className="font-poppins text-4xl md:text-5xl font-bold mb-4">
@@ -746,16 +760,42 @@ export default function Hone() {
                 <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300">
                   <h3 className="font-poppins text-white text-2xl font-bold mb-6 flex items-center gap-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-white">
-                        <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        className="text-white"
+                      >
+                        <path
+                          d="M12 2L2 7L12 12L22 7L12 2Z"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M2 17L12 22L22 17"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <path
+                          d="M2 12L12 17L22 12"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </div>
                     UX / UI Design
                   </h3>
                   <div className="space-y-3">
-                    <p className="text-gray-300 text-lg">User experience & user interface design</p>
+                    <p className="text-gray-300 text-lg">
+                      User experience & user interface design
+                    </p>
                     <div className="space-y-2">
                       <p className="flex items-center gap-3 text-gray-300">
                         <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
@@ -779,15 +819,35 @@ export default function Hone() {
                 <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300">
                   <h3 className="font-poppins text-white text-2xl font-bold mb-6 flex items-center gap-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
-                      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" className="text-white">
-                        <polyline points="16,18 22,12 16,6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-                        <polyline points="8,6 2,12 8,18" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      <svg
+                        width="20"
+                        height="20"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        className="text-white"
+                      >
+                        <polyline
+                          points="16,18 22,12 16,6"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
+                        <polyline
+                          points="8,6 2,12 8,18"
+                          stroke="currentColor"
+                          strokeWidth="2"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                        />
                       </svg>
                     </div>
                     Development
                   </h3>
                   <div className="space-y-3">
-                    <p className="text-gray-300 text-lg">Full-stack development expertise</p>
+                    <p className="text-gray-300 text-lg">
+                      Full-stack development expertise
+                    </p>
                     <div className="space-y-2">
                       <p className="flex items-center gap-3 text-gray-300">
                         <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
@@ -809,26 +869,49 @@ export default function Hone() {
 
             {/* Technology Stack */}
             <div className="mb-16">
-              <h3 className="text-2xl font-bold text-white text-center mb-8">Technology Stack</h3>
-              
+              <h3 className="text-2xl font-bold text-white text-center mb-8">
+                Technology Stack
+              </h3>
+
               {/* Design Tools */}
               <div className="mb-8">
-                <h4 className="text-lg font-semibold text-cyan-400 mb-4 text-center">Design Tools</h4>
+                <h4 className="text-lg font-semibold text-cyan-400 mb-4 text-center">
+                  Design Tools
+                </h4>
                 <div className="flex flex-wrap justify-center gap-4">
-                  {['Figma', 'Adobe XD', 'Photoshop', 'Illustrator'].map((tool, index) => (
-                    <div key={tool} className="bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105">
-                      <span className="text-white font-medium">{tool}</span>
-                    </div>
-                  ))}
+                  {["Figma", "Adobe XD", "Photoshop", "Illustrator"].map(
+                    (tool, index) => (
+                      <div
+                        key={tool}
+                        className="bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105"
+                      >
+                        <span className="text-white font-medium">{tool}</span>
+                      </div>
+                    )
+                  )}
                 </div>
               </div>
 
               {/* Development Tools */}
               <div>
-                <h4 className="text-lg font-semibold text-purple-400 mb-4 text-center">Development Tools</h4>
+                <h4 className="text-lg font-semibold text-purple-400 mb-4 text-center">
+                  Development Tools
+                </h4>
                 <div className="flex flex-wrap justify-center gap-4">
-                  {['React', 'Next.js', 'Vue.js', 'TypeScript', 'NestJS', 'PostgreSQL', 'Docker', 'Git'].map((tool, index) => (
-                    <div key={tool} className="bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-105">
+                  {[
+                    "React",
+                    "Next.js",
+                    "Vue.js",
+                    "TypeScript",
+                    "NestJS",
+                    "PostgreSQL",
+                    "Docker",
+                    "Git",
+                  ].map((tool, index) => (
+                    <div
+                      key={tool}
+                      className="bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-105"
+                    >
                       <span className="text-white font-medium">{tool}</span>
                     </div>
                   ))}
@@ -836,24 +919,47 @@ export default function Hone() {
               </div>
             </div>
 
-            {/* Achievements & Stats */}
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
-              <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-200">
-                <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300">
-                  <div className="text-4xl font-bold text-cyan-400 mb-2">50+</div>
-                  <div className="text-gray-300">Projects Completed</div>
+            {/* Process */}
+            <div className="mb-16">
+              <h3 className="text-2xl font-bold text-white text-center mb-12">
+                My Process
+              </h3>
+              <div className="grid md:grid-cols-4 gap-6">
+                <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-200">
+                  <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+                    1
+                  </div>
+                  <h4 className="text-white font-semibold mb-2">Discovery</h4>
+                  <p className="text-gray-400 text-sm">
+                    Understanding your needs and goals
+                  </p>
                 </div>
-              </div>
-              <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-400">
-                <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300">
-                  <div className="text-4xl font-bold text-purple-400 mb-2">3+</div>
-                  <div className="text-gray-300">Years Experience</div>
+                <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-400">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+                    2
+                  </div>
+                  <h4 className="text-white font-semibold mb-2">Design</h4>
+                  <p className="text-gray-400 text-sm">
+                    Creating wireframes and prototypes
+                  </p>
                 </div>
-              </div>
-              <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-600">
-                <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300">
-                  <div className="text-4xl font-bold text-pink-400 mb-2">100%</div>
-                  <div className="text-gray-300">Client Satisfaction</div>
+                <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-600">
+                  <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-red-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+                    3
+                  </div>
+                  <h4 className="text-white font-semibold mb-2">Develop</h4>
+                  <p className="text-gray-400 text-sm">
+                    Building with modern technologies
+                  </p>
+                </div>
+                <div className="text-center animate-in slide-in-from-bottom-4 fade-in duration-1000 delay-800">
+                  <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+                    4
+                  </div>
+                  <h4 className="text-white font-semibold mb-2">Deploy</h4>
+                  <p className="text-gray-400 text-sm">
+                    Launch and ongoing support
+                  </p>
                 </div>
               </div>
             </div>
@@ -864,9 +970,12 @@ export default function Hone() {
         <footer className="px-4 md:px-60 py-16 relative">
           <div className="relative z-10">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-white mb-4">Ready to Start Your Project?</h3>
+              <h3 className="text-2xl font-bold text-white mb-4">
+                Ready to Start Your Project?
+              </h3>
               <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-                Let's work together to bring your ideas to life with modern design and cutting-edge technology.
+                Let's work together to bring your ideas to life with modern
+                design and cutting-edge technology.
               </p>
               <button
                 onClick={() => setIsContactModalOpen(true)}
@@ -875,20 +984,30 @@ export default function Hone() {
                 Get Started Today
               </button>
             </div>
-            
+
             <div className="border-t border-gray-700 pt-8">
               <div className="flex flex-col md:flex-row justify-between items-center gap-4">
                 <p className="font-poppins text-gray-400 text-sm">
                   Copyright © 2025 RATTANACODE888. All rights reserved.
                 </p>
                 <div className="flex gap-6">
-                  <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Privacy Policy</a>
-                  <a href="#" className="text-gray-400 hover:text-cyan-400 transition-colors duration-300">Terms of Service</a>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-300"
+                  >
+                    Privacy Policy
+                  </a>
+                  <a
+                    href="#"
+                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-300"
+                  >
+                    Terms of Service
+                  </a>
                 </div>
               </div>
             </div>
           </div>
-          
+
           {/* Background Elements */}
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
