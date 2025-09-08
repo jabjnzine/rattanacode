@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import Image from "next/image";
 export default function Hone() {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -193,9 +194,11 @@ export default function Hone() {
         <header className="grid grid-cols-[auto_1fr_auto] items-center px-4 md:px-60 py-6 fixed top-0 left-0 right-0 z-50 bg-dark-bg">
           {/* Left: Logo */}
           <div className="flex items-center">
-            <img
+            <Image
               src="https://api.builder.io/api/v1/image/assets/TEMP/45c59019d7170faaba6e29a3fe3d988f9d11744f?width=206"
               alt="Logo"
+              width={206}
+              height={40}
               className="h-10"
             />
           </div>
@@ -525,9 +528,11 @@ export default function Hone() {
                 }}
               >
                 <div className="h-72 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl mb-6 flex items-center justify-center overflow-hidden group">
-                  <img
-                    src="./code.jpg"
+                  <Image
+                    src="/code.jpg"
                     alt="Website Development"
+                    width={400}
+                    height={288}
                     className="w-full h-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
@@ -634,9 +639,11 @@ export default function Hone() {
                 }}
               >
                 <div className="h-72 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl mb-6 flex items-center justify-center overflow-hidden group">
-                  <img
-                    src="./design.jpg"
+                  <Image
+                    src="/design.jpg"
                     alt="Graphic Design"
+                    width={400}
+                    height={288}
                     className="w-full h-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-500"
                   />
                 </div>
@@ -882,7 +889,7 @@ export default function Hone() {
                   {["Figma", "Adobe XD", "Photoshop", "Illustrator"].map(
                     (tool, index) => (
                       <div
-                        key={tool}
+                        key={index}
                         className="bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105"
                       >
                         <span className="text-white font-medium">{tool}</span>
@@ -909,7 +916,7 @@ export default function Hone() {
                     "Git",
                   ].map((tool, index) => (
                     <div
-                      key={tool}
+                      key={index}
                       className="bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-105"
                     >
                       <span className="text-white font-medium">{tool}</span>
@@ -974,7 +981,7 @@ export default function Hone() {
                 Ready to Start Your Project?
               </h3>
               <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
-                Let's work together to bring your ideas to life with modern
+                Let&apos;s work together to bring your ideas to life with modern
                 design and cutting-edge technology.
               </p>
               <button
