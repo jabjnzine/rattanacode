@@ -348,7 +348,7 @@ export default function Hone() {
           >
             <div className="h-72 bg-white rounded-xl mb-4 flex items-center justify-center">
               <img 
-                src="./design.jpg" 
+                src="./code.jpg" 
                 alt="Website Development" 
                 className="w-full h-full object-cover rounded-xl"
               />
@@ -442,7 +442,7 @@ export default function Hone() {
           >
             <div className="h-72 bg-white rounded-xl mb-4 flex items-center justify-center">
               <img 
-                src="./code.jpg" 
+                src="./design.jpg" 
                 alt="Graphic Design" 
                 className="w-full h-full object-cover rounded-xl"
               />
