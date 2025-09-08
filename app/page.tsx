@@ -190,16 +190,16 @@ export default function Hone() {
       )}
 
       <div className="min-h-screen w-full bg-dark-bg text-white">
-      {/* Header */}
-        <header className="grid grid-cols-[auto_1fr_auto] items-center px-4 md:px-60 py-6 fixed top-0 left-0 right-0 z-50 bg-dark-bg">
+        {/* Header */}
+        <header className="flex items-center justify-between px-4 md:px-60 py-4 md:py-6 fixed top-0 left-0 right-0 z-50 bg-dark-bg/95 backdrop-blur-sm border-b border-gray-800/50">
         {/* Left: Logo */}
         <div className="flex items-center">
             <Image
             src="https://api.builder.io/api/v1/image/assets/TEMP/45c59019d7170faaba6e29a3fe3d988f9d11744f?width=206"
             alt="Logo"
-              width={100}
-              height={40}
-            className="h-10"
+              width={80}
+              height={32}
+            className="h-8 md:h-10"
           />
         </div>
 
@@ -284,10 +284,11 @@ export default function Hone() {
           </div>
         </nav>
 
-          {/* Mobile Menu Button */}
-          <div className="md:hidden">
+          {/* Right: Mobile Menu + Contact */}
+          <div className="flex items-center gap-3">
+            {/* Mobile Menu Button */}
             <button
-              className="text-white p-2"
+              className="md:hidden text-white p-2 hover:bg-gray-800/50 rounded-lg transition-colors duration-200"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <svg
@@ -308,34 +309,26 @@ export default function Hone() {
                 />
               </svg>
             </button>
-          </div>
 
-        {/* Right: Contact */}
-        <div className="flex justify-end">
-          <button
-              className="font-actor text-white text-base"
-            style={{
-                width: "70px",
-                height: "34px",
-                borderRadius: "8px",
-              border: "0.599px solid #9E9C9C",
-            }}
+            {/* Contact Button */}
+            <button
+              className="font-actor text-white text-sm md:text-base px-4 py-2 rounded-lg border border-gray-600 hover:border-cyan-400 hover:bg-cyan-400/10 transition-all duration-300"
               onClick={() => setIsContactModalOpen(true)}
-          >
-            Contact
-          </button>
-        </div>
+            >
+              Contact
+            </button>
+          </div>
       </header>
 
         {/* Mobile Menu Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden fixed top-16 left-0 right-0 z-40 bg-dark-bg border-t border-gray-700">
-            <div className="px-4 py-4 space-y-4">
+          <div className="md:hidden fixed top-16 left-0 right-0 z-40 bg-dark-bg/95 backdrop-blur-sm border-t border-gray-700/50 animate-in slide-in-from-top-4 fade-in duration-300">
+            <div className="px-4 py-6 space-y-2">
               <div
-                className={`px-4 py-2 rounded-lg cursor-pointer transition-colors ${
+                className={`px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 ${
                   activeSection === "home"
-                    ? "bg-cyan-500/20 text-cyan-400"
-                    : "text-gray-400 hover:text-cyan-400"
+                    ? "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30"
+                    : "text-gray-400 hover:text-cyan-400 hover:bg-gray-800/50"
                 }`}
                 onClick={() => {
                   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -343,13 +336,13 @@ export default function Hone() {
                   setMobileMenuOpen(false);
                 }}
               >
-                HOME
+                <span className="font-semibold">HOME</span>
               </div>
               <div
-                className={`px-4 py-2 rounded-lg cursor-pointer transition-colors ${
+                className={`px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 ${
                   activeSection === "service-section"
-                    ? "bg-cyan-500/20 text-cyan-400"
-                    : "text-gray-400 hover:text-cyan-400"
+                    ? "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30"
+                    : "text-gray-400 hover:text-cyan-400 hover:bg-gray-800/50"
                 }`}
                 onClick={() => {
                   document
@@ -359,13 +352,13 @@ export default function Hone() {
                   setMobileMenuOpen(false);
                 }}
               >
-                SERVICE
+                <span className="font-semibold">SERVICE</span>
               </div>
               <div
-                className={`px-4 py-2 rounded-lg cursor-pointer transition-colors ${
+                className={`px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 ${
                   activeSection === "skills-section"
-                    ? "bg-cyan-500/20 text-cyan-400"
-                    : "text-gray-400 hover:text-cyan-400"
+                    ? "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30"
+                    : "text-gray-400 hover:text-cyan-400 hover:bg-gray-800/50"
                 }`}
                 onClick={() => {
                   document
@@ -375,7 +368,7 @@ export default function Hone() {
                   setMobileMenuOpen(false);
                 }}
               >
-                SKILLS
+                <span className="font-semibold">SKILLS</span>
               </div>
             </div>
           </div>
@@ -932,6 +925,216 @@ export default function Hone() {
                       <span className="text-white font-medium group-hover:text-purple-300 transition-colors duration-300">{tool}</span>
                     </div>
                   ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Portfolio/Projects */}
+            <div className="mb-16">
+              <h3 className="text-2xl font-bold text-white text-center mb-12">
+                Portfolio
+              </h3>
+              
+              {/* CRM System Project */}
+              <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 mb-8">
+                <div className="grid md:grid-cols-2 gap-8 items-center">
+                  {/* Project Image/Preview */}
+                  <div className="relative">
+                    <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700/50">
+                      {/* Mock CRM Dashboard */}
+                      <div className="space-y-4">
+                        {/* Header */}
+                        <div className="flex items-center justify-between pb-4 border-b border-gray-600">
+                          <h4 className="text-white font-bold text-lg">CRM Dashboard</h4>
+                          <div className="flex gap-2">
+                            <div className="w-3 h-3 bg-red-500 rounded-full"></div>
+                            <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                            <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                          </div>
+                        </div>
+                        
+                        {/* Stats Cards */}
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="bg-cyan-500/20 rounded-lg p-3">
+                            <div className="text-cyan-400 text-sm font-semibold">Total Customers</div>
+                            <div className="text-white text-xl font-bold">1,247</div>
+                          </div>
+                          <div className="bg-purple-500/20 rounded-lg p-3">
+                            <div className="text-purple-400 text-sm font-semibold">Active Deals</div>
+                            <div className="text-white text-xl font-bold">89</div>
+                          </div>
+                        </div>
+                        
+                        {/* Recent Activities */}
+                        <div className="space-y-2">
+                          <div className="text-gray-300 text-sm">Recent Activities</div>
+                          <div className="space-y-1">
+                            <div className="flex items-center gap-2 text-xs text-gray-400">
+                              <div className="w-2 h-2 bg-green-500 rounded-full"></div>
+                              New lead: John Smith
+                            </div>
+                            <div className="flex items-center gap-2 text-xs text-gray-400">
+                              <div className="w-2 h-2 bg-blue-500 rounded-full"></div>
+                              Deal closed: $5,200
+                            </div>
+                            <div className="flex items-center gap-2 text-xs text-gray-400">
+                              <div className="w-2 h-2 bg-yellow-500 rounded-full"></div>
+                              Follow-up scheduled
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    
+                    {/* Tech Stack Badges */}
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      <span className="px-3 py-1 bg-cyan-500/20 text-cyan-400 text-xs rounded-full">React</span>
+                      <span className="px-3 py-1 bg-blue-500/20 text-blue-400 text-xs rounded-full">Node.js</span>
+                      <span className="px-3 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">MongoDB</span>
+                      <span className="px-3 py-1 bg-purple-500/20 text-purple-400 text-xs rounded-full">Express</span>
+                    </div>
+                  </div>
+                  
+                  {/* Project Details */}
+                  <div>
+                    <h4 className="text-2xl font-bold text-white mb-4">Customer Relationship Management System</h4>
+                    <p className="text-gray-300 mb-6 leading-relaxed">
+                      A comprehensive CRM system built with modern technologies to help businesses manage their customer relationships, track sales, and automate workflows.
+                    </p>
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <h5 className="text-white font-semibold mb-2">Key Features:</h5>
+                        <ul className="space-y-1 text-gray-300 text-sm">
+                          <li className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></span>
+                            Customer database management
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></span>
+                            Sales pipeline tracking
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></span>
+                            Task and activity management
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></span>
+                            Real-time analytics dashboard
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full"></span>
+                            Email integration
+                          </li>
+                        </ul>
+                      </div>
+                      
+                      <div className="flex gap-4">
+                        <button className="px-6 py-2 bg-gradient-to-r from-cyan-500 to-purple-600 text-white rounded-lg font-semibold hover:scale-105 transition-all duration-300">
+                          View Live Demo
+                        </button>
+                        <button className="px-6 py-2 border border-gray-600 text-gray-300 rounded-lg font-semibold hover:border-cyan-400 hover:text-cyan-400 transition-all duration-300">
+                          View Code
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+              {/* E-commerce Platform Project */}
+              <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300">
+                <div className="grid md:grid-cols-2 gap-8 items-center">
+                  {/* Project Details */}
+                  <div>
+                    <h4 className="text-2xl font-bold text-white mb-4">E-commerce Platform</h4>
+                    <p className="text-gray-300 mb-6 leading-relaxed">
+                      A full-featured e-commerce platform with modern design, secure payment processing, and comprehensive admin dashboard.
+                    </p>
+                    
+                    <div className="space-y-4">
+                      <div>
+                        <h5 className="text-white font-semibold mb-2">Key Features:</h5>
+                        <ul className="space-y-1 text-gray-300 text-sm">
+                          <li className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 bg-pink-400 rounded-full"></span>
+                            Product catalog management
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 bg-pink-400 rounded-full"></span>
+                            Shopping cart & checkout
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 bg-pink-400 rounded-full"></span>
+                            Payment gateway integration
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 bg-pink-400 rounded-full"></span>
+                            Order management system
+                          </li>
+                          <li className="flex items-center gap-2">
+                            <span className="w-1.5 h-1.5 bg-pink-400 rounded-full"></span>
+                            User authentication
+                          </li>
+                        </ul>
+                      </div>
+                      
+                      <div className="flex gap-4">
+                        <button className="px-6 py-2 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg font-semibold hover:scale-105 transition-all duration-300">
+                          View Live Demo
+                        </button>
+                        <button className="px-6 py-2 border border-gray-600 text-gray-300 rounded-lg font-semibold hover:border-pink-400 hover:text-pink-400 transition-all duration-300">
+                          View Code
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  {/* Project Image/Preview */}
+                  <div className="relative">
+                    <div className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl p-6 border border-gray-700/50">
+                      {/* Mock E-commerce Interface */}
+                      <div className="space-y-4">
+                        {/* Header */}
+                        <div className="flex items-center justify-between pb-4 border-b border-gray-600">
+                          <h4 className="text-white font-bold text-lg">Shop Now</h4>
+                          <div className="flex items-center gap-2">
+                            <div className="w-6 h-6 bg-pink-500/20 rounded flex items-center justify-center">
+                              <span className="text-pink-400 text-xs">🛒</span>
+                            </div>
+                            <span className="text-pink-400 text-sm">3</span>
+                          </div>
+                        </div>
+                        
+                        {/* Product Grid */}
+                        <div className="grid grid-cols-2 gap-3">
+                          <div className="bg-gray-700/50 rounded-lg p-2">
+                            <div className="w-full h-16 bg-gradient-to-br from-pink-500/30 to-purple-500/30 rounded mb-2"></div>
+                            <div className="text-white text-xs font-semibold">Product 1</div>
+                            <div className="text-pink-400 text-xs">$29.99</div>
+                          </div>
+                          <div className="bg-gray-700/50 rounded-lg p-2">
+                            <div className="w-full h-16 bg-gradient-to-br from-blue-500/30 to-cyan-500/30 rounded mb-2"></div>
+                            <div className="text-white text-xs font-semibold">Product 2</div>
+                            <div className="text-pink-400 text-xs">$39.99</div>
+                          </div>
+                        </div>
+                        
+                        {/* Checkout Button */}
+                        <button className="w-full bg-gradient-to-r from-pink-500 to-purple-600 text-white text-sm py-2 rounded-lg font-semibold">
+                          Checkout - $69.98
+                        </button>
+                      </div>
+                    </div>
+                    
+                    {/* Tech Stack Badges */}
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      <span className="px-3 py-1 bg-pink-500/20 text-pink-400 text-xs rounded-full">Next.js</span>
+                      <span className="px-3 py-1 bg-blue-500/20 text-blue-400 text-xs rounded-full">TypeScript</span>
+                      <span className="px-3 py-1 bg-green-500/20 text-green-400 text-xs rounded-full">PostgreSQL</span>
+                      <span className="px-3 py-1 bg-purple-500/20 text-purple-400 text-xs rounded-full">Stripe</span>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
