@@ -256,7 +256,7 @@ export default function Hone() {
           ></div>
 
           <button
-            className="cursor-pointer inline-flex items-center justify-center gap-3 text-white font-montserrat w-full sm:w-[219px] relative"
+            className="cursor-pointer inline-flex items-center justify-center gap-3 text-white font-montserrat w-full sm:w-[219px] relative group"
             style={{
               height: "45.819px",
               borderRadius: "23.298px",
@@ -265,11 +265,19 @@ export default function Hone() {
             }}
           >
             <div 
-              className="absolute inset-0"
+              className="absolute inset-0 transition-all duration-300"
               style={{
                 background: "linear-gradient(90deg, #00F0FF 0%, #5200FF 50%, #FF2DF7 100%)",
                 padding: "1px",
                 borderRadius: "23.298px",
+                backgroundSize: "200% 200%",
+                backgroundPosition: "0% 50%",
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.animation = "gradientMove 2s ease-in-out infinite";
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.animation = "none";
               }}
             >
               <div 
@@ -372,7 +380,7 @@ export default function Hone() {
                 onClick={() => {
                   window.open("https://sppkng1998.wixsite.com/my-portfolio", "_blank");
                 }}
-                className="cursor-pointer flex items-center justify-center text-white font-montserrat relative w-full sm:w-[219px]"
+                className="cursor-pointer flex items-center justify-center text-white font-montserrat relative w-full sm:w-[219px] group"
                 style={{
                   height: "45.819px",
                   borderRadius: "23.298px",
@@ -381,11 +389,19 @@ export default function Hone() {
                 }}
               >
                 <div 
-                  className="absolute inset-0"
+                  className="absolute inset-0 transition-all duration-300"
                   style={{
                     background: "linear-gradient(90deg, #00F0FF 0%, #5200FF 50%, #FF2DF7 100%)",
                     padding: "1px",
                     borderRadius: "23.298px",
+                    backgroundSize: "200% 200%",
+                    backgroundPosition: "0% 50%",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.animation = "gradientMove 2s ease-in-out infinite";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.animation = "none";
                   }}
                 >
                   <div 
@@ -459,7 +475,7 @@ export default function Hone() {
                 <p>More – Designed to Make an Impact</p>
               </div>
               <button
-                className="cursor-pointer flex items-center justify-center text-white font-montserrat relative w-full sm:w-[219px]"
+                className="cursor-pointer flex items-center justify-center text-white font-montserrat relative w-full sm:w-[219px] group"
                 style={{
                   height: "45.819px",
                   borderRadius: "23.298px",
@@ -468,11 +484,19 @@ export default function Hone() {
                 }}
               >
                 <div 
-                  className="absolute inset-0"
+                  className="absolute inset-0 transition-all duration-300"
                   style={{
                     background: "linear-gradient(90deg, #00F0FF 0%, #5200FF 50%, #FF2DF7 100%)",
                     padding: "1px",
                     borderRadius: "23.298px",
+                    backgroundSize: "200% 200%",
+                    backgroundPosition: "0% 50%",
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.animation = "gradientMove 2s ease-in-out infinite";
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.animation = "none";
                   }}
                 >
                   <div 
