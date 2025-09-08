@@ -40,24 +40,24 @@ export default function Hone() {
       {/* Custom Contact Modal */}
       {isContactModalOpen && (
         <div 
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-300"
           onClick={() => setIsContactModalOpen(false)}
         >
           <div 
-            className="bg-gray-800 rounded-lg p-6 max-w-md w-full mx-4 relative"
+            className="bg-gray-800 rounded-xl p-8 max-w-md w-full mx-4 relative shadow-2xl border border-gray-700 animate-in zoom-in-95 slide-in-from-bottom-4 duration-300"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}
             <button
               onClick={() => setIsContactModalOpen(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl"
+              className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-700 transition-all duration-200"
             >
               ×
             </button>
 
             {/* Header */}
             <div className="flex flex-col items-center gap-4 pb-6">
-              <div className="w-16 h-16 bg-gray-700 rounded-full border-2 border-gray-600 flex items-center justify-center">
+              <div className="w-20 h-20 bg-gradient-to-br from-gray-700 to-gray-800 rounded-full border-2 border-gray-600 flex items-center justify-center shadow-lg">
                 <svg
                   width="24"
                   height="24"
@@ -78,16 +78,16 @@ export default function Hone() {
                 </svg>
               </div>
               <div className="text-center">
-                <h2 className="text-2xl font-bold text-white">Contact</h2>
-                <p className="text-gray-400 text-sm">GET IN TOUCH</p>
+                <h2 className="text-3xl font-bold text-white mb-2">Contact</h2>
+                <p className="text-gray-400 text-sm font-medium tracking-wider">GET IN TOUCH</p>
               </div>
             </div>
 
             {/* Contact Options */}
             <div className="space-y-4">
               {/* Phone Contact */}
-              <div className="bg-gray-700 rounded-lg p-4 flex items-center gap-4">
-                <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+              <div className="bg-gray-700/80 backdrop-blur-sm rounded-xl p-5 flex items-center gap-4 hover:bg-gray-700 transition-all duration-200 hover:scale-[1.02] border border-gray-600/50">
+                <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg">
                   <svg
                     width="20"
                     height="20"
@@ -104,17 +104,17 @@ export default function Hone() {
                     />
                   </svg>
                 </div>
-                <div>
-                  <p className="text-gray-400 text-sm font-medium">PHONE</p>
-                  <p className="text-white text-lg font-semibold">
+                <div className="flex-1">
+                  <p className="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">PHONE</p>
+                  <p className="text-white text-lg font-bold">
                     098-463-0999
                   </p>
                 </div>
               </div>
 
               {/* WhatsApp Contact */}
-              <div className="bg-gray-700 rounded-lg p-4 flex items-center gap-4">
-                <div className="w-12 h-12 bg-green-500 rounded-full flex items-center justify-center">
+              <div className="bg-gray-700/80 backdrop-blur-sm rounded-xl p-5 flex items-center gap-4 hover:bg-gray-700 transition-all duration-200 hover:scale-[1.02] border border-gray-600/50">
+                <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg">
                   <svg
                     width="20"
                     height="20"
@@ -138,17 +138,17 @@ export default function Hone() {
                     />
                   </svg>
                 </div>
-                <div>
-                  <p className="text-gray-400 text-sm font-medium">WHATSAPP</p>
-                  <p className="text-white text-lg font-semibold">
+                <div className="flex-1">
+                  <p className="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">WHATSAPP</p>
+                  <p className="text-white text-lg font-bold">
                     098-463-0999
                   </p>
                 </div>
               </div>
 
               {/* Email Contact */}
-              <div className="bg-gray-700 rounded-lg p-4 flex items-center gap-4">
-                <div className="w-12 h-12 bg-red-500 rounded-full flex items-center justify-center">
+              <div className="bg-gray-700/80 backdrop-blur-sm rounded-xl p-5 flex items-center gap-4 hover:bg-gray-700 transition-all duration-200 hover:scale-[1.02] border border-gray-600/50">
+                <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-lg">
                   <svg
                     width="20"
                     height="20"
@@ -172,9 +172,9 @@ export default function Hone() {
                     />
                   </svg>
                 </div>
-                <div>
-                  <p className="text-gray-400 text-sm font-medium">EMAIL</p>
-                  <p className="text-white text-lg font-semibold">
+                <div className="flex-1">
+                  <p className="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">EMAIL</p>
+                  <p className="text-white text-lg font-bold">
                     Spp.kng1998@gmail.com
                   </p>
                 </div>
