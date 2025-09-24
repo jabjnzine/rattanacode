@@ -1,25 +1,43 @@
 "use client";
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useTheme } from "./contexts/ThemeContext";
 export default function Hone() {
   const [activeSection, setActiveSection] = useState("home");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
+  
+  // Safe theme hook usage
+  let theme: 'dark' | 'light' = 'dark';
+  let toggleTheme: () => void = () => {};
+  
+  try {
+    const themeContext = useTheme();
+    theme = themeContext.theme;
+    toggleTheme = themeContext.toggleTheme;
+  } catch {
+    // Fallback to dark theme if context is not available
+    console.warn('Theme context not available, using dark theme as fallback');
+  }
 
   useEffect(() => {
     const handleScroll = () => {
       const serviceSection = document.getElementById("service-section");
       const skillsSection = document.getElementById("skills-section");
+      const projectSection = document.getElementById("project-section");
 
-      if (!serviceSection || !skillsSection) {
+      if (!serviceSection || !skillsSection || !projectSection) {
         return;
       }
 
       const scrollPosition = window.scrollY;
       const serviceTop = serviceSection.offsetTop;
       const skillsTop = skillsSection.offsetTop;
+      const projectTop = projectSection.offsetTop;
 
-      if (scrollPosition >= skillsTop - 100) {
+      if (scrollPosition >= projectTop - 100) {
+        setActiveSection("project-section");
+      } else if (scrollPosition >= skillsTop - 100) {
         setActiveSection("skills-section");
       } else if (scrollPosition >= serviceTop - 100) {
         setActiveSection("service-section");
@@ -189,9 +207,9 @@ export default function Hone() {
         </div>
       )}
 
-      <div className="min-h-screen w-full bg-dark-bg text-white">
+      <div className="min-h-screen w-full bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
         {/* Header */}
-        <header className="flex items-center justify-between px-4 md:px-60 py-4 md:py-6 fixed top-0 left-0 right-0 z-50 bg-dark-bg/95 backdrop-blur-sm border-b border-gray-800/50">
+        <header className="flex items-center justify-between px-4 md:px-60 py-4 md:py-6 fixed top-0 left-0 right-0 z-50 bg-white/95 dark:bg-gray-900/95 backdrop-blur-sm border-b border-gray-200/50 dark:border-gray-800/50 transition-colors duration-300">
         {/* Left: Logo */}
         <div className="flex items-center">
             <Image
@@ -217,8 +235,8 @@ export default function Hone() {
               <span
                 className={`font-actor text-base cursor-pointer transition-colors ${
                   activeSection === "home"
-                    ? "text-white"
-                    : "text-gray-400 hover:text-cyan-400"
+                    ? "text-gray-900 dark:text-white"
+                    : "text-gray-600 dark:text-gray-400 hover:text-cyan-500 dark:hover:text-cyan-400"
                 }`}
                 onClick={() => {
                   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -242,8 +260,8 @@ export default function Hone() {
               <span
                 className={`font-actor text-base cursor-pointer transition-colors ${
                   activeSection === "service-section"
-                    ? "text-white"
-                    : "text-gray-400 hover:text-cyan-400"
+                    ? "text-gray-900 dark:text-white"
+                    : "text-gray-600 dark:text-gray-400 hover:text-cyan-500 dark:hover:text-cyan-400"
                 }`}
                 onClick={() => {
                   document
@@ -269,8 +287,8 @@ export default function Hone() {
               <span
                 className={`font-actor text-base cursor-pointer transition-colors ${
                   activeSection === "skills-section"
-                    ? "text-white"
-                    : "text-gray-400 hover:text-cyan-400"
+                    ? "text-gray-900 dark:text-white"
+                    : "text-gray-600 dark:text-gray-400 hover:text-cyan-500 dark:hover:text-cyan-400"
                 }`}
                 onClick={() => {
                   document
@@ -282,13 +300,57 @@ export default function Hone() {
                 SKILLS
               </span>
           </div>
+          <div
+              className={`flex items-center gap-3 px-2 py-2 ${
+                activeSection === "project-section" ? "border-b" : ""
+              }`}
+              style={{
+                borderBottomColor:
+                  activeSection === "project-section"
+                    ? "#7B386D"
+                    : "transparent",
+              }}
+            >
+              <span
+                className={`font-actor text-base cursor-pointer transition-colors ${
+                  activeSection === "project-section"
+                    ? "text-gray-900 dark:text-white"
+                    : "text-gray-600 dark:text-gray-400 hover:text-cyan-500 dark:hover:text-cyan-400"
+                }`}
+                onClick={() => {
+                  document
+                    .getElementById("project-section")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                  setActiveSection("project-section");
+                }}
+              >
+                PROJECT
+              </span>
+          </div>
         </nav>
 
-          {/* Right: Mobile Menu + Contact */}
+          {/* Right: Theme Toggle + Mobile Menu + Contact */}
           <div className="flex items-center gap-3">
+            {/* Theme Toggle Button */}
+            <button
+              onClick={toggleTheme}
+              className="p-2 rounded-lg border border-gray-600 hover:border-cyan-400 hover:bg-cyan-400/10 transition-all duration-300 group"
+              title={theme === 'dark' ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
+            >
+              {theme === 'dark' ? (
+                <svg className="w-5 h-5 text-yellow-400 group-hover:text-yellow-300 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                </svg>
+              ) : (
+                <svg className="w-5 h-5 text-gray-600 group-hover:text-gray-800 transition-colors duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                </svg>
+              )}
+            </button>
+
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-white p-2 hover:bg-gray-800/50 rounded-lg transition-colors duration-200"
+              className="md:hidden text-white dark:text-white p-2 hover:bg-gray-800/50 dark:hover:bg-gray-800/50 rounded-lg transition-colors duration-200"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               <svg
@@ -312,7 +374,7 @@ export default function Hone() {
 
             {/* Contact Button */}
             <button
-              className="font-actor text-white text-sm md:text-base px-4 py-2 rounded-lg border border-gray-600 hover:border-cyan-400 hover:bg-cyan-400/10 transition-all duration-300"
+              className="font-actor text-white dark:text-white text-sm md:text-base px-4 py-2 rounded-lg border border-gray-600 dark:border-gray-600 hover:border-cyan-400 hover:bg-cyan-400/10 transition-all duration-300"
               onClick={() => setIsContactModalOpen(true)}
             >
               Contact
@@ -322,13 +384,33 @@ export default function Hone() {
 
         {/* Mobile Menu Dropdown */}
         {mobileMenuOpen && (
-          <div className="md:hidden fixed top-16 left-0 right-0 z-40 bg-dark-bg/95 backdrop-blur-sm border-t border-gray-700/50 animate-in slide-in-from-top-4 fade-in duration-300">
+          <div className="md:hidden fixed top-16 left-0 right-0 z-40 bg-gray-900/95 dark:bg-gray-900/95 backdrop-blur-sm border-t border-gray-700/50 animate-in slide-in-from-top-4 fade-in duration-300">
             <div className="px-4 py-6 space-y-2">
+              {/* Theme Toggle in Mobile Menu */}
+              <div className="px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 bg-gray-800/50 dark:bg-gray-800/50 border border-gray-600/50 dark:border-gray-600/50">
+                <button
+                  onClick={toggleTheme}
+                  className="flex items-center gap-3 w-full text-left"
+                >
+                  {theme === 'dark' ? (
+                    <svg className="w-5 h-5 text-yellow-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                  ) : (
+                    <svg className="w-5 h-5 text-gray-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z" />
+                    </svg>
+                  )}
+                  <span className="font-semibold text-white dark:text-white">
+                    {theme === 'dark' ? 'Light Mode' : 'Dark Mode'}
+                  </span>
+                </button>
+              </div>
               <div
                 className={`px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 ${
                   activeSection === "home"
-                    ? "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30"
-                    : "text-gray-400 hover:text-cyan-400 hover:bg-gray-800/50"
+                    ? "bg-cyan-500/20 text-cyan-500 dark:text-cyan-400 border border-cyan-500/30"
+                    : "text-gray-600 dark:text-gray-400 hover:text-cyan-500 dark:hover:text-cyan-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
                 }`}
                 onClick={() => {
                   window.scrollTo({ top: 0, behavior: "smooth" });
@@ -341,8 +423,8 @@ export default function Hone() {
               <div
                 className={`px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 ${
                   activeSection === "service-section"
-                    ? "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30"
-                    : "text-gray-400 hover:text-cyan-400 hover:bg-gray-800/50"
+                    ? "bg-cyan-500/20 text-cyan-500 dark:text-cyan-400 border border-cyan-500/30"
+                    : "text-gray-600 dark:text-gray-400 hover:text-cyan-500 dark:hover:text-cyan-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
                 }`}
                 onClick={() => {
                   document
@@ -357,8 +439,8 @@ export default function Hone() {
               <div
                 className={`px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 ${
                   activeSection === "skills-section"
-                    ? "bg-cyan-500/20 text-cyan-400 border border-cyan-500/30"
-                    : "text-gray-400 hover:text-cyan-400 hover:bg-gray-800/50"
+                    ? "bg-cyan-500/20 text-cyan-500 dark:text-cyan-400 border border-cyan-500/30"
+                    : "text-gray-600 dark:text-gray-400 hover:text-cyan-500 dark:hover:text-cyan-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
                 }`}
                 onClick={() => {
                   document
@@ -369,6 +451,22 @@ export default function Hone() {
                 }}
               >
                 <span className="font-semibold">SKILLS</span>
+              </div>
+              <div
+                className={`px-4 py-3 rounded-xl cursor-pointer transition-all duration-300 ${
+                  activeSection === "project-section"
+                    ? "bg-cyan-500/20 text-cyan-500 dark:text-cyan-400 border border-cyan-500/30"
+                    : "text-gray-600 dark:text-gray-400 hover:text-cyan-500 dark:hover:text-cyan-400 hover:bg-gray-100/50 dark:hover:bg-gray-800/50"
+                }`}
+                onClick={() => {
+                  document
+                    .getElementById("project-section")
+                    ?.scrollIntoView({ behavior: "smooth" });
+                  setActiveSection("project-section");
+                  setMobileMenuOpen(false);
+                }}
+              >
+                <span className="font-semibold">PROJECT</span>
               </div>
             </div>
           </div>
@@ -393,16 +491,40 @@ export default function Hone() {
           <div className="absolute inset-0 overflow-hidden">
             <div className="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-br from-cyan-500/20 to-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
             <div className="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-br from-pink-500/20 to-cyan-500/20 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            
+            {/* Floating Sparkles */}
+            <div className="absolute top-1/4 left-1/3 w-2 h-2 bg-cyan-400/50 rounded-full animate-ping delay-200"></div>
+            <div className="absolute top-1/3 right-1/4 w-1.5 h-1.5 bg-purple-400/40 rounded-full animate-ping delay-700"></div>
+            <div className="absolute top-1/2 left-1/4 w-1 h-1 bg-pink-400/60 rounded-full animate-ping delay-1200"></div>
+            <div className="absolute top-2/3 right-1/3 w-2.5 h-2.5 bg-cyan-300/30 rounded-full animate-ping delay-1700"></div>
+            <div className="absolute bottom-1/4 left-1/2 w-1.5 h-1.5 bg-purple-300/35 rounded-full animate-ping delay-2200"></div>
+            
+            {/* Moving Light Particles */}
+            <div className="absolute top-1/3 left-1/2 w-1 h-1 bg-white/25 rounded-full animate-bounce delay-400"></div>
+            <div className="absolute top-1/2 right-1/3 w-1.5 h-1.5 bg-cyan-300/20 rounded-full animate-bounce delay-900"></div>
+            <div className="absolute bottom-1/3 left-1/3 w-1 h-1 bg-purple-300/15 rounded-full animate-bounce delay-1400"></div>
+            <div className="absolute bottom-1/2 right-1/2 w-1.5 h-1.5 bg-pink-300/20 rounded-full animate-bounce delay-1900"></div>
+            
+            {/* Subtle Grid Pattern */}
+            <div className="absolute inset-0 opacity-4">
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  linear-gradient(rgba(255,255,255,0.08) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px)
+                `,
+                backgroundSize: '60px 60px'
+              }}></div>
+            </div>
           </div>
 
           <div className="relative z-10 max-w-4xl w-full px-4 sm:px-0">
             <div className="mb-8 animate-in slide-in-from-left-4 fade-in duration-1000">
-              <h1 className="font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-light text-white mb-4 tracking-tight">
-                <span className="bg-gradient-to-r from-white via-cyan-200 to-purple-200 bg-clip-text text-transparent animate-pulse">
+              <h1 className="font-poppins text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-[60px] font-light text-gray-900 dark:text-white mb-4 tracking-tight">
+                <span className="bg-gradient-to-r from-gray-900 via-cyan-600 to-purple-600 dark:from-white dark:via-cyan-200 dark:to-purple-200 bg-clip-text text-transparent animate-pulse">
                   RattanaCode888
                 </span>
               </h1>
-              <p className="font-poppins text-gray-300 text-lg sm:text-xl md:text-2xl leading-relaxed hover:text-cyan-300 transition-colors duration-300">
+              <p className="font-poppins text-gray-600 dark:text-gray-300 text-lg sm:text-xl md:text-2xl leading-relaxed hover:text-cyan-600 dark:hover:text-cyan-300 transition-colors duration-300">
                 Design & Code That Grows With You
               </p>
             </div>
@@ -490,39 +612,56 @@ export default function Hone() {
         >
           {/* Background Elements */}
           <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-20 right-20 w-60 h-60 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 left-20 w-60 h-60 bg-gradient-to-br from-pink-500/10 to-cyan-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute top-20 right-20 w-60 h-60 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-20 left-20 w-60 h-60 bg-gradient-to-br from-pink-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            
+            {/* Floating Sparkles */}
+            <div className="absolute top-32 left-1/4 w-2 h-2 bg-cyan-400/40 rounded-full animate-ping delay-500"></div>
+            <div className="absolute top-48 right-1/3 w-1.5 h-1.5 bg-purple-400/30 rounded-full animate-ping delay-1000"></div>
+            <div className="absolute bottom-32 right-1/4 w-1.5 h-1.5 bg-pink-400/30 rounded-full animate-ping delay-700"></div>
+            <div className="absolute bottom-48 left-1/3 w-2 h-2 bg-cyan-300/20 rounded-full animate-ping delay-1200"></div>
+            
+            {/* Subtle Grid Pattern */}
+            <div className="absolute inset-0 opacity-3">
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)
+                `,
+                backgroundSize: '40px 40px'
+              }}></div>
+            </div>
           </div>
 
           <div className="relative z-10">
             <div className="mb-12 text-center animate-in slide-in-from-bottom-4 fade-in duration-1000">
               <h2 className="font-poppins text-4xl md:text-5xl font-bold mb-4">
                 <span
-                  className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
-            style={{
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            Service
+                  className="bg-gradient-to-r from-cyan-600 via-purple-600 to-pink-600 dark:from-cyan-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent"
+                  style={{
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Service
                 </span>
-          </h2>
-              <p className="font-poppins text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+              </h2>
+              <p className="font-poppins text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
                 Optimize your business with user-friendly, scalable, and
                 efficient digital solutions.
-          </p>
-        </div>
+              </p>
+            </div>
 
             <div className="flex flex-col lg:flex-row justify-center gap-8 md:gap-10">
           {/* Website Design & Development Card */}
           <div
-                className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 pb-8 flex flex-col w-full max-w-[450px] border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/20 animate-in slide-in-from-left-4 fade-in duration-1000 delay-200"
+                className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 pb-8 flex flex-col w-full max-w-[450px] border border-gray-200/50 dark:border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/20 animate-in slide-in-from-left-4 fade-in duration-1000 delay-200"
                 style={{
                   height: "auto",
                 }}
               >
-                <div className="h-72 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl mb-6 flex items-center justify-center overflow-hidden group">
+                <div className="h-72 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 rounded-xl mb-6 flex items-center justify-center overflow-hidden group">
                   <Image
                     src="/code.jpg"
                     alt="Website Development"
@@ -533,19 +672,19 @@ export default function Hone() {
                 </div>
                 <div className="flex-1 flex flex-col">
                   <h3
-                    className="font-poppins text-white text-xl font-bold mb-4"
+                    className="font-poppins text-gray-900 dark:text-white text-xl font-bold mb-4"
                     style={{ lineHeight: "28px" }}
               >
                 Website Design & Development
               </h3>
-                  <div className="font-poppins text-gray-300 text-base leading-7 mb-8 flex-1 space-y-2">
+                  <div className="font-poppins text-gray-600 dark:text-gray-300 text-base leading-7 mb-8 flex-1 space-y-2">
                     <p className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
                       Inventory Management Systems
                     </p>
                     <p className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
-                      Point of Sale (POS) Systems
+                      Point of Sale Systems (POS)
                     </p>
                     <p className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
@@ -557,12 +696,6 @@ export default function Hone() {
                 </p>
               </div>
               <button
-                    onClick={() => {
-                      window.open(
-                        "https://sppkng1998.wixsite.com/my-portfolio",
-                        "_blank"
-                      );
-                    }}
                     className="cursor-pointer flex items-center justify-center text-white font-montserrat relative w-full group transition-all duration-300 hover:scale-105 active:scale-95"
                     style={{
                       height: "50px",
@@ -628,12 +761,12 @@ export default function Hone() {
 
           {/* Graphic Design & Artwork Card */}
           <div
-                className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 pb-8 flex flex-col w-full max-w-[450px] border border-gray-700/50 hover:border-pink-500/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-pink-500/20 animate-in slide-in-from-right-4 fade-in duration-1000 delay-400"
+                className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 pb-8 flex flex-col w-full max-w-[450px] border border-gray-200/50 dark:border-gray-700/50 hover:border-pink-500/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-pink-500/20 animate-in slide-in-from-right-4 fade-in duration-1000 delay-400"
             style={{
                   height: "auto",
                 }}
               >
-                <div className="h-72 bg-gradient-to-br from-gray-900 to-gray-800 rounded-xl mb-6 flex items-center justify-center overflow-hidden group">
+                <div className="h-72 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 rounded-xl mb-6 flex items-center justify-center overflow-hidden group">
                   <Image
                     src="/design.jpg"
                     alt="Graphic Design"
@@ -644,12 +777,12 @@ export default function Hone() {
                 </div>
                 <div className="flex-1 flex flex-col">
                   <h3
-                    className="font-poppins text-white text-xl font-bold mb-4"
+                    className="font-poppins text-gray-900 dark:text-white text-xl font-bold mb-4"
                     style={{ lineHeight: "28px" }}
               >
                 Graphic Design & Artwork
               </h3>
-                  <div className="font-poppins text-gray-300 text-base leading-7 mb-8 flex-1 space-y-2">
+                  <div className="font-poppins text-gray-600 dark:text-gray-300 text-base leading-7 mb-8 flex-1 space-y-2">
                     <p className="flex items-center gap-2">
                       <span className="w-2 h-2 bg-pink-400 rounded-full"></span>
                       Logos, Branding, Marketing Materials
@@ -660,12 +793,6 @@ export default function Hone() {
                     </p>
               </div>
               <button
-                    onClick={() => {
-                      window.open(
-                        "https://drive.google.com/drive/folders/1-2YVCt3Fh2OIhK61JnEnXTRt4WuUAW3K",
-                        "_blank"
-                      );
-                    }}
                     className="cursor-pointer flex items-center justify-center text-white font-montserrat relative w-full group transition-all duration-300 hover:scale-105 active:scale-95"
                     style={{
                       height: "50px",
@@ -739,25 +866,46 @@ export default function Hone() {
         >
           {/* Background Elements */}
           <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute top-20 left-20 w-60 h-60 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-3xl"></div>
-            <div className="absolute bottom-20 right-20 w-60 h-60 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute top-20 left-20 w-60 h-60 bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-full blur-3xl animate-pulse"></div>
+            <div className="absolute bottom-20 right-20 w-60 h-60 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+            
+            {/* Floating Sparkles */}
+            <div className="absolute top-40 left-1/3 w-1.5 h-1.5 bg-purple-400/40 rounded-full animate-ping delay-300"></div>
+            <div className="absolute top-56 right-1/4 w-2 h-2 bg-pink-400/30 rounded-full animate-ping delay-800"></div>
+            <div className="absolute bottom-40 left-1/4 w-1 h-1 bg-cyan-400/50 rounded-full animate-ping delay-1100"></div>
+            <div className="absolute bottom-56 right-1/3 w-1.5 h-1.5 bg-purple-300/25 rounded-full animate-ping delay-1600"></div>
+            
+            {/* Moving Light Particles */}
+            <div className="absolute top-32 right-1/2 w-1 h-1 bg-white/15 rounded-full animate-bounce delay-500"></div>
+            <div className="absolute bottom-32 left-1/2 w-1.5 h-1.5 bg-cyan-300/20 rounded-full animate-bounce delay-1000"></div>
+            
+            {/* Subtle Grid Pattern */}
+            <div className="absolute inset-0 opacity-3">
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px)
+                `,
+                backgroundSize: '35px 35px'
+              }}></div>
+            </div>
           </div>
 
           <div className="relative z-10">
             <div className="mb-12 text-center animate-in slide-in-from-bottom-4 fade-in duration-1000">
               <h2 className="font-poppins text-4xl md:text-5xl font-bold mb-4">
                 <span
-                  className="bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent"
-            style={{
-              WebkitBackgroundClip: "text",
-              WebkitTextFillColor: "transparent",
-              backgroundClip: "text",
-            }}
-          >
-            Skills
+                  className="bg-gradient-to-r from-cyan-600 via-purple-600 to-pink-600 dark:from-cyan-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent"
+                  style={{
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  Skills
                 </span>
-          </h2>
-              <p className="font-poppins text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+              </h2>
+              <p className="font-poppins text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
                 Professional expertise in modern technologies and design tools
               </p>
             </div>
@@ -765,8 +913,8 @@ export default function Hone() {
             <div className="grid md:grid-cols-2 gap-12 mb-16">
               {/* UX/UI Design */}
               <div className="animate-in slide-in-from-left-4 fade-in duration-1000 delay-200">
-                <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300">
-                  <h3 className="font-poppins text-white text-2xl font-bold mb-6 flex items-center gap-3">
+                <div className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300">
+                  <h3 className="font-poppins text-gray-900 dark:text-white text-2xl font-bold mb-6 flex items-center gap-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg flex items-center justify-center">
                       <svg
                         width="20"
@@ -801,19 +949,19 @@ export default function Hone() {
               UX / UI Design
             </h3>
                   <div className="space-y-3">
-                    <p className="text-gray-300 text-lg">
+                    <p className="text-gray-600 dark:text-gray-300 text-lg">
                       User experience & user interface design
                     </p>
                     <div className="space-y-2">
-                      <p className="flex items-center gap-3 text-gray-300">
+                      <p className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
                         <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
                         Design system for developers
                       </p>
-                      <p className="flex items-center gap-3 text-gray-300">
+                      <p className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
                         <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
                         Mock-ups & Prototypes
                       </p>
-                      <p className="flex items-center gap-3 text-gray-300">
+                      <p className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
                         <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
                         User Flow & Wireframes
                       </p>
@@ -824,8 +972,8 @@ export default function Hone() {
 
               {/* Developer Skills */}
               <div className="animate-in slide-in-from-right-4 fade-in duration-1000 delay-400">
-                <div className="bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300">
-                  <h3 className="font-poppins text-white text-2xl font-bold mb-6 flex items-center gap-3">
+                <div className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-8 border border-gray-200/50 dark:border-gray-700/50 hover:border-purple-500/50 transition-all duration-300">
+                  <h3 className="font-poppins text-gray-900 dark:text-white text-2xl font-bold mb-6 flex items-center gap-3">
                     <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-lg flex items-center justify-center">
                       <svg
                         width="20"
@@ -853,19 +1001,19 @@ export default function Hone() {
                     Development
                   </h3>
                   <div className="space-y-3">
-                    <p className="text-gray-300 text-lg">
+                    <p className="text-gray-600 dark:text-gray-300 text-lg">
                       Full-stack development expertise
                     </p>
                     <div className="space-y-2">
-                      <p className="flex items-center gap-3 text-gray-300">
+                      <p className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
                         <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
                         Frontend: React, Next.js, Vue.js, TypeScript
                       </p>
-                      <p className="flex items-center gap-3 text-gray-300">
+                      <p className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
                         <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
                         Backend: NestJS, REST API, PostgreSQL
                       </p>
-                      <p className="flex items-center gap-3 text-gray-300">
+                      <p className="flex items-center gap-3 text-gray-600 dark:text-gray-300">
                         <span className="w-2 h-2 bg-purple-400 rounded-full"></span>
                         LINE Platform Integration
                       </p>
@@ -877,13 +1025,13 @@ export default function Hone() {
 
             {/* Technology Stack */}
             <div className="mb-16">
-              <h3 className="text-2xl font-bold text-white text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8">
                 Technology Stack
               </h3>
 
               {/* Design Tools */}
           <div className="mb-8">
-                <h4 className="text-lg font-semibold text-cyan-400 mb-4 text-center">
+                <h4 className="text-lg font-semibold text-cyan-600 dark:text-cyan-400 mb-4 text-center">
                   Design Tools
                 </h4>
                 <div className="flex flex-wrap justify-center gap-4">
@@ -891,10 +1039,10 @@ export default function Hone() {
                     (tool, index) => (
                       <div
                         key={index}
-                        className="bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105 hover:rotate-1 group cursor-pointer"
+                        className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-200/50 dark:border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105 hover:rotate-1 group cursor-pointer"
                         style={{ animationDelay: `${index * 100}ms` }}
                       >
-                        <span className="text-white font-medium group-hover:text-cyan-300 transition-colors duration-300">{tool}</span>
+                        <span className="text-gray-900 dark:text-white font-medium group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors duration-300">{tool}</span>
                       </div>
                     )
                   )}
@@ -903,7 +1051,7 @@ export default function Hone() {
 
               {/* Development Tools */}
               <div>
-                <h4 className="text-lg font-semibold text-purple-400 mb-4 text-center">
+                <h4 className="text-lg font-semibold text-purple-600 dark:text-purple-400 mb-4 text-center">
                   Development Tools
                 </h4>
                 <div className="flex flex-wrap justify-center gap-4">
@@ -919,10 +1067,10 @@ export default function Hone() {
                   ].map((tool, index) => (
                     <div
                       key={index}
-                      className="bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 hover:-rotate-1 group cursor-pointer"
+                      className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-200/50 dark:border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 hover:-rotate-1 group cursor-pointer"
                       style={{ animationDelay: `${index * 100}ms` }}
                     >
-                      <span className="text-white font-medium group-hover:text-purple-300 transition-colors duration-300">{tool}</span>
+                      <span className="text-gray-900 dark:text-white font-medium group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors duration-300">{tool}</span>
                     </div>
                   ))}
                 </div>
@@ -1268,14 +1416,494 @@ export default function Hone() {
         </div>
       </section>
 
+      {/* Project Section */}
+      <section
+        id="project-section"
+        className="px-4 md:px-60 py-16 md:py-20 relative"
+      >
+        {/* Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Main Gradient Orbs */}
+          <div className="absolute top-20 right-20 w-60 h-60 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-20 left-20 w-60 h-60 bg-gradient-to-br from-pink-500/10 to-cyan-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          
+          {/* Floating Sparkles */}
+          <div className="absolute top-32 left-1/4 w-2 h-2 bg-cyan-400/60 rounded-full animate-ping delay-500"></div>
+          <div className="absolute top-48 right-1/3 w-1.5 h-1.5 bg-purple-400/50 rounded-full animate-ping delay-1000"></div>
+          <div className="absolute top-64 left-1/3 w-1 h-1 bg-pink-400/40 rounded-full animate-ping delay-1500"></div>
+          <div className="absolute top-80 right-1/4 w-2.5 h-2.5 bg-cyan-300/30 rounded-full animate-ping delay-2000"></div>
+          
+          <div className="absolute bottom-32 right-1/4 w-1.5 h-1.5 bg-pink-400/50 rounded-full animate-ping delay-700"></div>
+          <div className="absolute bottom-48 left-1/3 w-2 h-2 bg-purple-300/40 rounded-full animate-ping delay-1200"></div>
+          <div className="absolute bottom-64 right-1/3 w-1 h-1 bg-cyan-400/60 rounded-full animate-ping delay-1700"></div>
+          <div className="absolute bottom-80 left-1/4 w-2.5 h-2.5 bg-pink-300/30 rounded-full animate-ping delay-2200"></div>
+          
+          {/* Moving Light Particles */}
+          <div className="absolute top-40 left-1/2 w-1 h-1 bg-white/20 rounded-full animate-bounce delay-300"></div>
+          <div className="absolute top-56 right-1/2 w-1.5 h-1.5 bg-cyan-300/30 rounded-full animate-bounce delay-800"></div>
+          <div className="absolute bottom-40 left-1/2 w-1 h-1 bg-purple-300/20 rounded-full animate-bounce delay-1300"></div>
+          <div className="absolute bottom-56 right-1/2 w-1.5 h-1.5 bg-pink-300/25 rounded-full animate-bounce delay-1800"></div>
+          
+          {/* Subtle Grid Pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0" style={{
+              backgroundImage: `
+                linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: '50px 50px'
+            }}></div>
+          </div>
+          
+          {/* Animated Gradient Lines */}
+          <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-cyan-500/20 to-transparent animate-pulse delay-500"></div>
+          <div className="absolute top-3/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-purple-500/20 to-transparent animate-pulse delay-1500"></div>
+          <div className="absolute left-1/4 top-0 w-px h-full bg-gradient-to-b from-transparent via-pink-500/20 to-transparent animate-pulse delay-1000"></div>
+          <div className="absolute right-1/4 top-0 w-px h-full bg-gradient-to-b from-transparent via-cyan-500/20 to-transparent animate-pulse delay-2000"></div>
+        </div>
+
+        <div className="relative z-10">
+            <div className="mb-12 text-center animate-in slide-in-from-bottom-4 fade-in duration-1000">
+              <h2 className="font-poppins text-4xl md:text-5xl font-bold mb-4">
+                <span
+                  className="bg-gradient-to-r from-cyan-600 via-purple-600 to-pink-600 dark:from-cyan-400 dark:via-purple-400 dark:to-pink-400 bg-clip-text text-transparent"
+                  style={{
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  PROJECT
+                </span>
+              </h2>
+              <p className="font-poppins text-gray-600 dark:text-gray-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
+                ระบบซอฟต์แวร์ที่ออกแบบมาเพื่อตอบสนองความต้องการของธุรกิจทุกขนาด
+              </p>
+            </div>
+
+          {/* Project Categories Grid */}
+          <div className="grid md:grid-cols-2 gap-8 mb-16">
+            {/* Inventory Management Systems */}
+            <div className="relative group">
+              {/* Animated Border */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+              
+              {/* Card Content */}
+              <div className="relative bg-white/90 dark:bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 border border-gray-200/30 dark:border-gray-700/30 hover:border-cyan-400/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-cyan-500/25 animate-in slide-in-from-left-4 fade-in duration-1000 delay-200">
+                {/* Glowing Header */}
+                <div className="flex items-center gap-4 mb-6 relative">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 rounded-xl blur-lg opacity-60 group-hover:opacity-100 transition duration-500"></div>
+                    <div className="relative w-16 h-16 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-xl flex items-center justify-center shadow-2xl group-hover:animate-pulse">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-white drop-shadow-lg">
+                        <path d="M20 7L4 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M10 11L4 11" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M10 15L4 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M16 3L16 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M20 3L20 21" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors duration-300 flex items-center gap-2">
+                      <span className="text-cyan-500 dark:text-cyan-400 animate-pulse">✪</span>
+                      Inventory Management Systems
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400 text-sm font-medium">ระบบจัดการสินค้าคงคลัง</p>
+                    <div className="flex items-center gap-2 mt-2">
+                      <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                      <span className="text-cyan-400 text-xs font-semibold">LIVE</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Tech Stack Badges */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="px-3 py-1 bg-cyan-500/20 text-cyan-300 text-xs rounded-full border border-cyan-500/30 font-medium">React</span>
+                  <span className="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full border border-blue-500/30 font-medium">Node.js</span>
+                  <span className="px-3 py-1 bg-green-500/20 text-green-300 text-xs rounded-full border border-green-500/30 font-medium">MongoDB</span>
+                  <span className="px-3 py-1 bg-purple-500/20 text-purple-300 text-xs rounded-full border border-purple-500/30 font-medium">TypeScript</span>
+                </div>
+                
+                <div className="space-y-4 mb-6">
+                  <div className="bg-gradient-to-r from-gray-800/50 to-gray-700/50 rounded-xl p-4 border border-gray-600/30 backdrop-blur-sm">
+                    <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
+                      <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse"></div>
+                      ฟีเจอร์หลัก
+                    </h4>
+                    <ul className="space-y-3 text-gray-300 text-sm">
+                      <li className="flex items-center gap-3 group/item">
+                        <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full group-hover/item:animate-pulse"></div>
+                        <span className="group-hover/item:text-cyan-300 transition-colors duration-300">ติดตามสินค้าคงคลังแบบ Real-time</span>
+                      </li>
+                      <li className="flex items-center gap-3 group/item">
+                        <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full group-hover/item:animate-pulse"></div>
+                        <span className="group-hover/item:text-cyan-300 transition-colors duration-300">ระบบแจ้งเตือนสินค้าใกล้หมด</span>
+                      </li>
+                      <li className="flex items-center gap-3 group/item">
+                        <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full group-hover/item:animate-pulse"></div>
+                        <span className="group-hover/item:text-cyan-300 transition-colors duration-300">รายงานการเคลื่อนไหวสินค้า</span>
+                      </li>
+                      <li className="flex items-center gap-3 group/item">
+                        <div className="w-1.5 h-1.5 bg-cyan-400 rounded-full group-hover/item:animate-pulse"></div>
+                        <span className="group-hover/item:text-cyan-300 transition-colors duration-300">ระบบ Barcode/QR Code</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-xl p-4 border border-cyan-500/30 backdrop-blur-sm relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-cyan-500/5 to-blue-500/5 animate-pulse"></div>
+                    <div className="relative">
+                      <h4 className="text-cyan-300 font-semibold mb-2 flex items-center gap-2">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-cyan-400">
+                          <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        ตัวอย่างการใช้งาน
+                      </h4>
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        ระบบจัดการสินค้าคงคลังสำหรับร้านค้าปลีก ร้านค้าออนไลน์ และคลังสินค้า 
+                        ช่วยลดต้นทุนและเพิ่มประสิทธิภาพการจัดการ
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <button className="w-full relative group/btn overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 via-blue-500 to-cyan-500 rounded-xl blur-sm opacity-75 group-hover/btn:opacity-100 transition duration-500"></div>
+                  <div className="relative bg-gradient-to-r from-cyan-500 to-blue-600 text-white py-3 rounded-xl font-semibold hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/50 flex items-center justify-center gap-2">
+                    <span>ดูตัวอย่างโปรเจค</span>
+                    <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            {/* Point of Sale (POS) Systems */}
+            <div className="relative group">
+              {/* Animated Border */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+              
+              {/* Card Content */}
+              <div className="relative bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 border border-gray-700/30 hover:border-purple-400/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-purple-500/25 animate-in slide-in-from-right-4 fade-in duration-1000 delay-400">
+                {/* Glowing Header */}
+                <div className="flex items-center gap-4 mb-6 relative">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500 to-pink-600 rounded-xl blur-lg opacity-60 group-hover:opacity-100 transition duration-500"></div>
+                    <div className="relative w-16 h-16 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center shadow-2xl group-hover:animate-pulse">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-white drop-shadow-lg">
+                        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="currentColor" strokeWidth="2"/>
+                        <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" strokeWidth="2"/>
+                        <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" strokeWidth="2"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple-300 transition-colors duration-300 flex items-center gap-2">
+                      <span className="text-purple-400 animate-pulse">✪</span>
+                      Point of Sale (POS) Systems
+                    </h3>
+                    <p className="text-gray-400 text-sm font-medium">ระบบขายหน้าร้าน</p>
+                    <div className="flex items-center gap-2 mt-2">
+                      <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                      <span className="text-purple-400 text-xs font-semibold">LIVE</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Tech Stack Badges */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="px-3 py-1 bg-purple-500/20 text-purple-300 text-xs rounded-full border border-purple-500/30 font-medium">Next.js</span>
+                  <span className="px-3 py-1 bg-pink-500/20 text-pink-300 text-xs rounded-full border border-pink-500/30 font-medium">TypeScript</span>
+                  <span className="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full border border-blue-500/30 font-medium">PostgreSQL</span>
+                  <span className="px-3 py-1 bg-green-500/20 text-green-300 text-xs rounded-full border border-green-500/30 font-medium">Stripe</span>
+                </div>
+                
+                <div className="space-y-4 mb-6">
+                  <div className="bg-gradient-to-r from-gray-800/50 to-gray-700/50 rounded-xl p-4 border border-gray-600/30 backdrop-blur-sm">
+                    <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
+                      <div className="w-2 h-2 bg-purple-400 rounded-full animate-pulse"></div>
+                      ฟีเจอร์หลัก
+                    </h4>
+                    <ul className="space-y-3 text-gray-300 text-sm">
+                      <li className="flex items-center gap-3 group/item">
+                        <div className="w-1.5 h-1.5 bg-purple-400 rounded-full group-hover/item:animate-pulse"></div>
+                        <span className="group-hover/item:text-purple-300 transition-colors duration-300">ระบบขายและรับชำระเงิน</span>
+                      </li>
+                      <li className="flex items-center gap-3 group/item">
+                        <div className="w-1.5 h-1.5 bg-purple-400 rounded-full group-hover/item:animate-pulse"></div>
+                        <span className="group-hover/item:text-purple-300 transition-colors duration-300">รายงานยอดขายรายวัน/เดือน</span>
+                      </li>
+                      <li className="flex items-center gap-3 group/item">
+                        <div className="w-1.5 h-1.5 bg-purple-400 rounded-full group-hover/item:animate-pulse"></div>
+                        <span className="group-hover/item:text-purple-300 transition-colors duration-300">ระบบสมาชิกและแต้มสะสม</span>
+                      </li>
+                      <li className="flex items-center gap-3 group/item">
+                        <div className="w-1.5 h-1.5 bg-purple-400 rounded-full group-hover/item:animate-pulse"></div>
+                        <span className="group-hover/item:text-purple-300 transition-colors duration-300">รองรับการพิมพ์ใบเสร็จ</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-purple-500/10 to-pink-500/10 rounded-xl p-4 border border-purple-500/30 backdrop-blur-sm relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/5 to-pink-500/5 animate-pulse"></div>
+                    <div className="relative">
+                      <h4 className="text-purple-300 font-semibold mb-2 flex items-center gap-2">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-purple-400">
+                          <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        ตัวอย่างการใช้งาน
+                      </h4>
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        ระบบ POS สำหรับร้านอาหาร คาเฟ่ ร้านค้าปลีก 
+                        รองรับการทำงานแบบ Multi-user และเชื่อมต่อกับระบบอื่นๆ
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <button className="w-full relative group/btn overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500 via-pink-500 to-purple-500 rounded-xl blur-sm opacity-75 group-hover/btn:opacity-100 transition duration-500"></div>
+                  <div className="relative bg-gradient-to-r from-purple-500 to-pink-600 text-white py-3 rounded-xl font-semibold hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-purple-500/50 flex items-center justify-center gap-2">
+                    <span>ดูตัวอย่างโปรเจค</span>
+                    <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            {/* E-commerce Platforms */}
+            <div className="relative group">
+              {/* Animated Border */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-pink-500 via-red-500 to-pink-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+              
+              {/* Card Content */}
+              <div className="relative bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 border border-gray-700/30 hover:border-pink-400/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-pink-500/25 animate-in slide-in-from-left-4 fade-in duration-1000 delay-600">
+                {/* Glowing Header */}
+                <div className="flex items-center gap-4 mb-6 relative">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-pink-500 to-red-600 rounded-xl blur-lg opacity-60 group-hover:opacity-100 transition duration-500"></div>
+                    <div className="relative w-16 h-16 bg-gradient-to-br from-pink-500 to-red-600 rounded-xl flex items-center justify-center shadow-2xl group-hover:animate-pulse">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-white drop-shadow-lg">
+                        <path d="M3 3H5L5.4 5M7 13H17L21 5H5.4M7 13L5.4 5M7 13L4.7 15.3C4.3 15.7 4.6 16.5 5.1 16.5H17M17 13V19C17 19.6 16.6 20 16 20H8C7.4 20 7 19.6 7 19V13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-pink-300 transition-colors duration-300 flex items-center gap-2">
+                      <span className="text-pink-400 animate-pulse">✪</span>
+                      E-commerce Platforms
+                    </h3>
+                    <p className="text-gray-400 text-sm font-medium">แพลตฟอร์มขายออนไลน์</p>
+                    <div className="flex items-center gap-2 mt-2">
+                      <div className="w-2 h-2 bg-pink-400 rounded-full animate-pulse"></div>
+                      <span className="text-pink-400 text-xs font-semibold">LIVE</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Tech Stack Badges */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="px-3 py-1 bg-pink-500/20 text-pink-300 text-xs rounded-full border border-pink-500/30 font-medium">Next.js</span>
+                  <span className="px-3 py-1 bg-red-500/20 text-red-300 text-xs rounded-full border border-red-500/30 font-medium">TypeScript</span>
+                  <span className="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full border border-blue-500/30 font-medium">PostgreSQL</span>
+                  <span className="px-3 py-1 bg-green-500/20 text-green-300 text-xs rounded-full border border-green-500/30 font-medium">Stripe</span>
+                </div>
+                
+                <div className="space-y-4 mb-6">
+                  <div className="bg-gradient-to-r from-gray-800/50 to-gray-700/50 rounded-xl p-4 border border-gray-600/30 backdrop-blur-sm">
+                    <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
+                      <div className="w-2 h-2 bg-pink-400 rounded-full animate-pulse"></div>
+                      ฟีเจอร์หลัก
+                    </h4>
+                    <ul className="space-y-3 text-gray-300 text-sm">
+                      <li className="flex items-center gap-3 group/item">
+                        <div className="w-1.5 h-1.5 bg-pink-400 rounded-full group-hover/item:animate-pulse"></div>
+                        <span className="group-hover/item:text-pink-300 transition-colors duration-300">ระบบร้านค้าออนไลน์ครบวงจร</span>
+                      </li>
+                      <li className="flex items-center gap-3 group/item">
+                        <div className="w-1.5 h-1.5 bg-pink-400 rounded-full group-hover/item:animate-pulse"></div>
+                        <span className="group-hover/item:text-pink-300 transition-colors duration-300">ระบบชำระเงินออนไลน์</span>
+                      </li>
+                      <li className="flex items-center gap-3 group/item">
+                        <div className="w-1.5 h-1.5 bg-pink-400 rounded-full group-hover/item:animate-pulse"></div>
+                        <span className="group-hover/item:text-pink-300 transition-colors duration-300">ระบบจัดการคำสั่งซื้อ</span>
+                      </li>
+                      <li className="flex items-center gap-3 group/item">
+                        <div className="w-1.5 h-1.5 bg-pink-400 rounded-full group-hover/item:animate-pulse"></div>
+                        <span className="group-hover/item:text-pink-300 transition-colors duration-300">ระบบสมาชิกและโปรโมชั่น</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-pink-500/10 to-red-500/10 rounded-xl p-4 border border-pink-500/30 backdrop-blur-sm relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-pink-500/5 to-red-500/5 animate-pulse"></div>
+                    <div className="relative">
+                      <h4 className="text-pink-300 font-semibold mb-2 flex items-center gap-2">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-pink-400">
+                          <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        ตัวอย่างการใช้งาน
+                      </h4>
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        เว็บไซต์ขายออนไลน์ที่รองรับการขายสินค้าหลายประเภท 
+                        มีระบบจัดการที่ครบครันและใช้งานง่าย
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <button className="w-full relative group/btn overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-red-500 to-pink-500 rounded-xl blur-sm opacity-75 group-hover/btn:opacity-100 transition duration-500"></div>
+                  <div className="relative bg-gradient-to-r from-pink-500 to-red-600 text-white py-3 rounded-xl font-semibold hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-pink-500/50 flex items-center justify-center gap-2">
+                    <span>ดูตัวอย่างโปรเจค</span>
+                    <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            </div>
+
+            {/* Custom Business Software */}
+            <div className="relative group">
+              {/* Animated Border */}
+              <div className="absolute -inset-0.5 bg-gradient-to-r from-green-500 via-teal-500 to-green-500 rounded-2xl blur opacity-75 group-hover:opacity-100 transition duration-1000 group-hover:duration-200 animate-pulse"></div>
+              
+              {/* Card Content */}
+              <div className="relative bg-gray-900/80 backdrop-blur-xl rounded-2xl p-8 border border-gray-700/30 hover:border-green-400/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-green-500/25 animate-in slide-in-from-right-4 fade-in duration-1000 delay-800">
+                {/* Glowing Header */}
+                <div className="flex items-center gap-4 mb-6 relative">
+                  <div className="relative">
+                    <div className="absolute inset-0 bg-gradient-to-r from-green-500 to-teal-600 rounded-xl blur-lg opacity-60 group-hover:opacity-100 transition duration-500"></div>
+                    <div className="relative w-16 h-16 bg-gradient-to-br from-green-500 to-teal-600 rounded-xl flex items-center justify-center shadow-2xl group-hover:animate-pulse">
+                      <svg width="32" height="32" viewBox="0 0 24 24" fill="none" className="text-white drop-shadow-lg">
+                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke="currentColor" strokeWidth="2"/>
+                        <path d="M9 9H15V15H9V9Z" stroke="currentColor" strokeWidth="2"/>
+                        <path d="M9 1V3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M15 1V3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M9 21V23" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M15 21V23" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M1 9H3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M1 15H3" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M21 9H23" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                        <path d="M21 15H23" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-green-300 transition-colors duration-300 flex items-center gap-2">
+                      <span className="text-green-400 animate-pulse">✪</span>
+                      Custom Business Software
+                    </h3>
+                    <p className="text-gray-400 text-sm font-medium">ซอฟต์แวร์ธุรกิจเฉพาะ</p>
+                    <div className="flex items-center gap-2 mt-2">
+                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                      <span className="text-green-400 text-xs font-semibold">LIVE</span>
+                    </div>
+                  </div>
+                </div>
+                
+                {/* Tech Stack Badges */}
+                <div className="flex flex-wrap gap-2 mb-6">
+                  <span className="px-3 py-1 bg-green-500/20 text-green-300 text-xs rounded-full border border-green-500/30 font-medium">React</span>
+                  <span className="px-3 py-1 bg-teal-500/20 text-teal-300 text-xs rounded-full border border-teal-500/30 font-medium">Node.js</span>
+                  <span className="px-3 py-1 bg-blue-500/20 text-blue-300 text-xs rounded-full border border-blue-500/30 font-medium">PostgreSQL</span>
+                  <span className="px-3 py-1 bg-purple-500/20 text-purple-300 text-xs rounded-full border border-purple-500/30 font-medium">Docker</span>
+                </div>
+                
+                <div className="space-y-4 mb-6">
+                  <div className="bg-gradient-to-r from-gray-800/50 to-gray-700/50 rounded-xl p-4 border border-gray-600/30 backdrop-blur-sm">
+                    <h4 className="text-white font-semibold mb-3 flex items-center gap-2">
+                      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+                      ฟีเจอร์หลัก
+                    </h4>
+                    <ul className="space-y-3 text-gray-300 text-sm">
+                      <li className="flex items-center gap-3 group/item">
+                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full group-hover/item:animate-pulse"></div>
+                        <span className="group-hover/item:text-green-300 transition-colors duration-300">ออกแบบตามความต้องการเฉพาะ</span>
+                      </li>
+                      <li className="flex items-center gap-3 group/item">
+                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full group-hover/item:animate-pulse"></div>
+                        <span className="group-hover/item:text-green-300 transition-colors duration-300">ระบบจัดการข้อมูลครบวงจร</span>
+                      </li>
+                      <li className="flex items-center gap-3 group/item">
+                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full group-hover/item:animate-pulse"></div>
+                        <span className="group-hover/item:text-green-300 transition-colors duration-300">รายงานและวิเคราะห์ข้อมูล</span>
+                      </li>
+                      <li className="flex items-center gap-3 group/item">
+                        <div className="w-1.5 h-1.5 bg-green-400 rounded-full group-hover/item:animate-pulse"></div>
+                        <span className="group-hover/item:text-green-300 transition-colors duration-300">รองรับการขยายระบบในอนาคต</span>
+                      </li>
+                    </ul>
+                  </div>
+                  
+                  <div className="bg-gradient-to-br from-green-500/10 to-teal-500/10 rounded-xl p-4 border border-green-500/30 backdrop-blur-sm relative overflow-hidden">
+                    <div className="absolute inset-0 bg-gradient-to-r from-green-500/5 to-teal-500/5 animate-pulse"></div>
+                    <div className="relative">
+                      <h4 className="text-green-300 font-semibold mb-2 flex items-center gap-2">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" className="text-green-400">
+                          <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        </svg>
+                        ตัวอย่างการใช้งาน
+                      </h4>
+                      <p className="text-gray-300 text-sm leading-relaxed">
+                        ซอฟต์แวร์ที่ออกแบบมาเฉพาะสำหรับธุรกิจของคุณ 
+                        รองรับทั้งธุรกิจขนาดเล็กและใหญ่
+                      </p>
+                    </div>
+                  </div>
+                </div>
+
+                <button className="w-full relative group/btn overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-r from-green-500 via-teal-500 to-green-500 rounded-xl blur-sm opacity-75 group-hover/btn:opacity-100 transition duration-500"></div>
+                  <div className="relative bg-gradient-to-r from-green-500 to-teal-600 text-white py-3 rounded-xl font-semibold hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-green-500/50 flex items-center justify-center gap-2">
+                    <span>ดูตัวอย่างโปรเจค</span>
+                    <svg className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          {/* Call to Action */}
+          <div className="text-center bg-gradient-to-r from-gray-800/50 to-gray-700/50 rounded-2xl p-8 border border-gray-600/50 backdrop-blur-sm">
+            <h3 className="text-2xl font-bold text-white mb-4">
+              พร้อมเริ่มโปรเจคของคุณแล้วหรือยัง?
+            </h3>
+            <p className="text-gray-300 mb-6 max-w-2xl mx-auto">
+              เราพร้อมช่วยคุณสร้างระบบซอฟต์แวร์ที่ตอบสนองความต้องการของธุรกิจ 
+              ด้วยเทคโนโลยีที่ทันสมัยและการออกแบบที่ใช้งานง่าย
+            </p>
+            <button
+              onClick={() => setIsContactModalOpen(true)}
+              className="bg-gradient-to-r from-cyan-500 via-purple-500 to-pink-500 text-white px-8 py-4 rounded-xl font-semibold text-lg hover:scale-105 transition-all duration-300 hover:shadow-lg hover:shadow-cyan-500/50 relative overflow-hidden group"
+            >
+              <span className="relative z-10 flex items-center gap-2">
+                เริ่มโปรเจคเลย
+                <svg className="w-5 h-5 group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </span>
+              <div className="absolute inset-0 bg-gradient-to-r from-pink-500 via-purple-500 to-cyan-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+            </button>
+          </div>
+        </div>
+      </section>
+
       {/* Footer */}
         <footer className="px-4 md:px-60 py-16 relative">
           <div className="relative z-10">
             <div className="text-center mb-8">
-              <h3 className="text-2xl font-bold text-white mb-4">
+              <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
                 Ready to Start Your Project?
               </h3>
-              <p className="text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
+              <p className="text-gray-600 dark:text-gray-300 text-lg mb-8 max-w-2xl mx-auto">
                 Let&apos;s work together to bring your ideas to life with modern
                 design and cutting-edge technology.
               </p>
@@ -1299,21 +1927,21 @@ export default function Hone() {
               </button>
             </div>
 
-            <div className="border-t border-gray-700 pt-8">
+            <div className="border-t border-gray-200 dark:border-gray-700 pt-8">
               <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-                <p className="font-poppins text-gray-400 text-sm">
+                <p className="font-poppins text-gray-600 dark:text-gray-400 text-sm">
             Copyright © 2025 RATTANACODE888. All rights reserved.
           </p>
                 <div className="flex gap-6">
                   <a
                     href="#"
-                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-300"
+                    className="text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-300"
                   >
                     Privacy Policy
                   </a>
                   <a
                     href="#"
-                    className="text-gray-400 hover:text-cyan-400 transition-colors duration-300"
+                    className="text-gray-600 dark:text-gray-400 hover:text-cyan-600 dark:hover:text-cyan-400 transition-colors duration-300"
                   >
                     Terms of Service
                   </a>
@@ -1324,7 +1952,29 @@ export default function Hone() {
 
           {/* Background Elements */}
           <div className="absolute inset-0 overflow-hidden">
-            <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl"></div>
+            <div className="absolute -top-20 left-1/2 transform -translate-x-1/2 w-96 h-96 bg-gradient-to-br from-cyan-500/10 to-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
+            
+            {/* Floating Sparkles */}
+            <div className="absolute top-20 left-1/4 w-2 h-2 bg-cyan-400/30 rounded-full animate-ping delay-400"></div>
+            <div className="absolute top-32 right-1/3 w-1.5 h-1.5 bg-purple-400/25 rounded-full animate-ping delay-900"></div>
+            <div className="absolute top-48 left-1/2 w-1 h-1 bg-pink-400/35 rounded-full animate-ping delay-1400"></div>
+            <div className="absolute top-64 right-1/4 w-2.5 h-2.5 bg-cyan-300/20 rounded-full animate-ping delay-1900"></div>
+            
+            {/* Moving Light Particles */}
+            <div className="absolute top-24 left-1/3 w-1 h-1 bg-white/10 rounded-full animate-bounce delay-600"></div>
+            <div className="absolute top-40 right-1/2 w-1.5 h-1.5 bg-cyan-300/15 rounded-full animate-bounce delay-1100"></div>
+            <div className="absolute top-56 left-1/2 w-1 h-1 bg-purple-300/10 rounded-full animate-bounce delay-1600"></div>
+            
+            {/* Subtle Grid Pattern */}
+            <div className="absolute inset-0 opacity-2">
+              <div className="absolute inset-0" style={{
+                backgroundImage: `
+                  linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+                  linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px)
+                `,
+                backgroundSize: '30px 30px'
+              }}></div>
+            </div>
         </div>
       </footer>
     </div>

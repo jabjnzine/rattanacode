@@ -2,11 +2,14 @@
 
 "use client" 
 import {HeroUIProvider} from '@heroui/react'
+import { ThemeProvider } from './contexts/ThemeContext'
 
 export function Providers({children}: { children: React.ReactNode }) {
   return (
-    <HeroUIProvider>
-      {children}
-    </HeroUIProvider>
+    <ThemeProvider>
+      <HeroUIProvider>
+        {children}
+      </HeroUIProvider>
+    </ThemeProvider>
   )
 }
