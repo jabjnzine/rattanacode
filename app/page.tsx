@@ -766,206 +766,224 @@ export default function Hone() {
               </p>
             </div>
 
-            <div className="flex flex-col lg:flex-row justify-center gap-8 md:gap-10">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6 max-w-5xl mx-auto">
           {/* Website Design & Development Card */}
           <div
-                className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 pb-8 flex flex-col w-full max-w-[450px] border border-gray-200/50 dark:border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-cyan-500/20 animate-in slide-in-from-left-4 fade-in duration-1000 delay-200"
-                style={{
-                  height: "auto",
-                }}
+                className="group bg-gradient-to-br from-white/90 to-white/70 dark:from-gray-800/90 dark:to-gray-800/70 backdrop-blur-sm rounded-xl p-5 flex flex-col border border-gray-200/50 dark:border-gray-700/50 hover:border-cyan-500/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-cyan-500/30 relative overflow-hidden"
               >
-                <div className="h-72 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 rounded-xl mb-6 flex items-center justify-center overflow-hidden group">
-                  <Image
-                    src="/code.jpg"
-                    alt="Website Development"
-                    width={400}
-                    height={288}
-                    className="w-full h-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-500"
-                  />
+                {/* Animated Background Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/0 via-cyan-500/0 to-cyan-500/0 group-hover:from-cyan-500/10 group-hover:via-cyan-500/5 group-hover:to-cyan-500/10 transition-all duration-500"></div>
+                
+                {/* Floating Icon */}
+                <div className="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-cyan-500/20 to-cyan-600/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:rotate-12">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-cyan-400">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </div>
-                <div className="flex-1 flex flex-col">
-                  <h3
-                    className="font-poppins text-gray-900 dark:text-white text-xl font-bold mb-4"
-                    style={{ lineHeight: "28px" }}
-              >
-                Website Design & Development
-              </h3>
-                  <div className="font-poppins text-gray-600 dark:text-gray-300 text-base leading-7 mb-8 flex-1 space-y-2">
-                    <p className="flex items-center gap-2">
-                      <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
-                      Inventory Management Systems
-                    </p>
-                    <p className="flex items-center gap-2">
-                      <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
-                      Point of Sale Systems (POS)
-                    </p>
-                    <p className="flex items-center gap-2">
-                      <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
-                      E-commerce Platforms
-                    </p>
-                    <p className="flex items-center gap-2">
-                      <span className="w-2 h-2 bg-cyan-400 rounded-full"></span>
-                      Custom Business Software for small and large enterprises
-                </p>
-              </div>
-              <button
-                    className="cursor-pointer flex items-center justify-center text-white font-montserrat relative w-full group transition-all duration-300 hover:scale-105 active:scale-95"
-                    style={{
-                      height: "50px",
-                      borderRadius: "25px",
-                      background: "transparent",
-                      border: "none",
-                    }}
-                  >
-                    <div
-                      className="absolute inset-0 group-hover:shadow-lg group-hover:shadow-cyan-500/50 transition-all duration-300"
+
+                <div className="relative z-10">
+                  <div className="h-40 bg-gradient-to-br from-cyan-100 to-cyan-200 dark:from-gray-900 dark:to-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden group/image">
+                    <Image
+                      src="/code.jpg"
+                      alt="Website Development"
+                      width={300}
+                      height={160}
+                      className="w-full h-full object-cover rounded-lg group-hover/image:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
+                  
+                  <div className="flex-1 flex flex-col">
+                    <h3 className="font-poppins text-gray-900 dark:text-white text-lg font-bold mb-3 group-hover:text-cyan-600 dark:group-hover:text-cyan-400 transition-colors">
+                      Website Design & Development
+                    </h3>
+                    
+                    <div className="font-poppins text-gray-600 dark:text-gray-300 text-sm leading-6 mb-4 flex-1 space-y-1.5">
+                      <p className="flex items-start gap-2 group/item">
+                        <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 flex-shrink-0 group-hover/item:scale-125 transition-transform"></span>
+                        <span className="text-xs">Inventory Management Systems</span>
+                      </p>
+                      <p className="flex items-start gap-2 group/item">
+                        <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 flex-shrink-0 group-hover/item:scale-125 transition-transform"></span>
+                        <span className="text-xs">Point of Sale Systems (POS)</span>
+                      </p>
+                      <p className="flex items-start gap-2 group/item">
+                        <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 flex-shrink-0 group-hover/item:scale-125 transition-transform"></span>
+                        <span className="text-xs">E-commerce Platforms</span>
+                      </p>
+                      <p className="flex items-start gap-2 group/item">
+                        <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full mt-1.5 flex-shrink-0 group-hover/item:scale-125 transition-transform"></span>
+                        <span className="text-xs">Custom Business Software</span>
+                      </p>
+                    </div>
+                    
+                    <button
+                      className="cursor-pointer flex items-center justify-center text-white font-montserrat relative w-full group/btn transition-all duration-300 hover:scale-105 active:scale-95"
                       style={{
-                        background:
-                          "linear-gradient(90deg, #00F0FF 0%, #5200FF 50%, #FF2DF7 100%)",
-                        padding: "1px",
-                        borderRadius: "25px",
+                        height: "42px",
+                        borderRadius: "21px",
+                        background: "transparent",
+                        border: "none",
                       }}
                     >
                       <div
-                        className="w-full h-full flex items-center justify-center gap-3"
-                style={{
-                          background: "rgba(9, 13, 24, 0.9)",
-                          borderRadius: "25px",
+                        className="absolute inset-0 group-hover/btn:shadow-lg group-hover/btn:shadow-cyan-500/50 transition-all duration-300"
+                        style={{
+                          background:
+                            "linear-gradient(90deg, #00F0FF 0%, #5200FF 50%, #FF2DF7 100%)",
+                          padding: "1px",
+                          borderRadius: "21px",
                         }}
                       >
-                        <span className="text-base font-semibold">
-                          View Details
-                        </span>
-                        <svg
-                          className="ml-3"
-                  width="19"
-                  height="19"
-                  viewBox="0 0 19 19"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M3.29688 9.38734H15.7224M10.2862 3.95117L15.7224 9.38734L10.2862 14.8235"
-                    stroke="url(#paint0_linear2)"
-                    strokeWidth="1.55319"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <defs>
-                    <linearGradient
-                      id="paint0_linear2"
-                      x1="15.0416"
-                      y1="1.31545"
-                      x2="0.589464"
-                      y2="2.17268"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop stopColor="#00F0FF" />
-                      <stop offset="0.482483" stopColor="#5200FF" />
-                      <stop offset="1" stopColor="#FF2DF7" />
-                    </linearGradient>
-                  </defs>
-                </svg>
+                        <div
+                          className="w-full h-full flex items-center justify-center gap-2"
+                          style={{
+                            background: "rgba(9, 13, 24, 0.9)",
+                            borderRadius: "21px",
+                          }}
+                        >
+                          <span className="text-sm font-semibold">View Details</span>
+                          <svg
+                            className="group-hover/btn:translate-x-1 transition-transform duration-300"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 19 19"
+                            fill="none"
+                          >
+                            <path
+                              d="M3.29688 9.38734H15.7224M10.2862 3.95117L15.7224 9.38734L10.2862 14.8235"
+                              stroke="url(#paint0_linear2)"
+                              strokeWidth="1.55319"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <defs>
+                              <linearGradient
+                                id="paint0_linear2"
+                                x1="15.0416"
+                                y1="1.31545"
+                                x2="0.589464"
+                                y2="2.17268"
+                                gradientUnits="userSpaceOnUse"
+                              >
+                                <stop stopColor="#00F0FF" />
+                                <stop offset="0.482483" stopColor="#5200FF" />
+                                <stop offset="1" stopColor="#FF2DF7" />
+                              </linearGradient>
+                            </defs>
+                          </svg>
+                        </div>
                       </div>
-                    </div>
-              </button>
-            </div>
+                    </button>
+                  </div>
+                </div>
           </div>
 
           {/* Graphic Design & Artwork Card */}
           <div
-                className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 pb-8 flex flex-col w-full max-w-[450px] border border-gray-200/50 dark:border-gray-700/50 hover:border-pink-500/50 transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-pink-500/20 animate-in slide-in-from-right-4 fade-in duration-1000 delay-400"
-            style={{
-                  height: "auto",
-                }}
+                className="group bg-gradient-to-br from-white/90 to-white/70 dark:from-gray-800/90 dark:to-gray-800/70 backdrop-blur-sm rounded-xl p-5 flex flex-col border border-gray-200/50 dark:border-gray-700/50 hover:border-pink-500/50 transition-all duration-500 hover:scale-[1.02] hover:shadow-2xl hover:shadow-pink-500/30 relative overflow-hidden"
               >
-                <div className="h-72 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-900 dark:to-gray-800 rounded-xl mb-6 flex items-center justify-center overflow-hidden group">
-                  <Image
-                    src="/design.jpg"
-                    alt="Graphic Design"
-                    width={400}
-                    height={288}
-                    className="w-full h-full object-cover rounded-xl group-hover:scale-110 transition-transform duration-500"
-                  />
+                {/* Animated Background Gradient */}
+                <div className="absolute inset-0 bg-gradient-to-br from-pink-500/0 via-pink-500/0 to-pink-500/0 group-hover:from-pink-500/10 group-hover:via-pink-500/5 group-hover:to-pink-500/10 transition-all duration-500"></div>
+                
+                {/* Floating Icon */}
+                <div className="absolute top-4 right-4 w-12 h-12 bg-gradient-to-br from-pink-500/20 to-pink-600/20 rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 group-hover:rotate-12">
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" className="text-pink-400">
+                    <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M2 17L12 22L22 17" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
                 </div>
-                <div className="flex-1 flex flex-col">
-                  <h3
-                    className="font-poppins text-gray-900 dark:text-white text-xl font-bold mb-4"
-                    style={{ lineHeight: "28px" }}
-              >
-                Graphic Design & Artwork
-              </h3>
-                  <div className="font-poppins text-gray-600 dark:text-gray-300 text-base leading-7 mb-8 flex-1 space-y-2">
-                    <p className="flex items-center gap-2">
-                      <span className="w-2 h-2 bg-pink-400 rounded-full"></span>
-                      Logos, Branding, Marketing Materials
-                    </p>
-                    <p className="flex items-center gap-2">
-                      <span className="w-2 h-2 bg-pink-400 rounded-full"></span>
-                      More – Designed to Make an Impact
-                    </p>
-              </div>
-              <button
-                    className="cursor-pointer flex items-center justify-center text-white font-montserrat relative w-full group transition-all duration-300 hover:scale-105 active:scale-95"
-                    style={{
-                      height: "50px",
-                      borderRadius: "25px",
-                      background: "transparent",
-                      border: "none",
-                    }}
-                  >
-                    <div
-                      className="absolute inset-0 group-hover:shadow-lg group-hover:shadow-pink-500/50 transition-all duration-300"
+
+                <div className="relative z-10">
+                  <div className="h-40 bg-gradient-to-br from-pink-100 to-pink-200 dark:from-gray-900 dark:to-gray-800 rounded-lg mb-4 flex items-center justify-center overflow-hidden group/image">
+                    <Image
+                      src="/design.jpg"
+                      alt="Graphic Design"
+                      width={300}
+                      height={160}
+                      className="w-full h-full object-cover rounded-lg group-hover/image:scale-110 transition-transform duration-700"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+                  </div>
+                  
+                  <div className="flex-1 flex flex-col">
+                    <h3 className="font-poppins text-gray-900 dark:text-white text-lg font-bold mb-3 group-hover:text-pink-600 dark:group-hover:text-pink-400 transition-colors">
+                      Graphic Design & Artwork
+                    </h3>
+                    
+                    <div className="font-poppins text-gray-600 dark:text-gray-300 text-sm leading-6 mb-4 flex-1 space-y-1.5">
+                      <p className="flex items-start gap-2 group/item">
+                        <span className="w-1.5 h-1.5 bg-pink-400 rounded-full mt-1.5 flex-shrink-0 group-hover/item:scale-125 transition-transform"></span>
+                        <span className="text-xs">Logos, Branding, Marketing Materials</span>
+                      </p>
+                      <p className="flex items-start gap-2 group/item">
+                        <span className="w-1.5 h-1.5 bg-pink-400 rounded-full mt-1.5 flex-shrink-0 group-hover/item:scale-125 transition-transform"></span>
+                        <span className="text-xs">More – Designed to Make an Impact</span>
+                      </p>
+                    </div>
+                    
+                    <button
+                      className="cursor-pointer flex items-center justify-center text-white font-montserrat relative w-full group/btn transition-all duration-300 hover:scale-105 active:scale-95"
                       style={{
-                        background:
-                          "linear-gradient(90deg, #00F0FF 0%, #5200FF 50%, #FF2DF7 100%)",
-                        padding: "1px",
-                        borderRadius: "25px",
+                        height: "42px",
+                        borderRadius: "21px",
+                        background: "transparent",
+                        border: "none",
                       }}
                     >
                       <div
-                        className="w-full h-full flex items-center justify-center gap-3"
-                style={{
-                          background: "rgba(9, 13, 24, 0.9)",
-                          borderRadius: "25px",
+                        className="absolute inset-0 group-hover/btn:shadow-lg group-hover/btn:shadow-pink-500/50 transition-all duration-300"
+                        style={{
+                          background:
+                            "linear-gradient(90deg, #00F0FF 0%, #5200FF 50%, #FF2DF7 100%)",
+                          padding: "1px",
+                          borderRadius: "21px",
                         }}
                       >
-                        <span className="text-base font-semibold">
-                          View Details
-                        </span>
-                        <svg
-                          className="ml-3"
-                  width="19"
-                  height="19"
-                  viewBox="0 0 19 19"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M3.29688 9.38734H15.7224M10.2862 3.95117L15.7224 9.38734L10.2862 14.8235"
-                    stroke="url(#paint0_linear3)"
-                    strokeWidth="1.55319"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                  <defs>
-                    <linearGradient
-                      id="paint0_linear3"
-                      x1="15.0416"
-                      y1="1.31545"
-                      x2="0.589464"
-                      y2="2.17268"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop stopColor="#00F0FF" />
-                      <stop offset="0.482483" stopColor="#5200FF" />
-                      <stop offset="1" stopColor="#FF2DF7" />
-                    </linearGradient>
-                  </defs>
-                </svg>
+                        <div
+                          className="w-full h-full flex items-center justify-center gap-2"
+                          style={{
+                            background: "rgba(9, 13, 24, 0.9)",
+                            borderRadius: "21px",
+                          }}
+                        >
+                          <span className="text-sm font-semibold">View Details</span>
+                          <svg
+                            className="group-hover/btn:translate-x-1 transition-transform duration-300"
+                            width="16"
+                            height="16"
+                            viewBox="0 0 19 19"
+                            fill="none"
+                          >
+                            <path
+                              d="M3.29688 9.38734H15.7224M10.2862 3.95117L15.7224 9.38734L10.2862 14.8235"
+                              stroke="url(#paint0_linear3)"
+                              strokeWidth="1.55319"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            />
+                            <defs>
+                              <linearGradient
+                                id="paint0_linear3"
+                                x1="15.0416"
+                                y1="1.31545"
+                                x2="0.589464"
+                                y2="2.17268"
+                                gradientUnits="userSpaceOnUse"
+                              >
+                                <stop stopColor="#00F0FF" />
+                                <stop offset="0.482483" stopColor="#5200FF" />
+                                <stop offset="1" stopColor="#FF2DF7" />
+                              </linearGradient>
+                            </defs>
+                          </svg>
+                        </div>
                       </div>
-                    </div>
-              </button>
+                    </button>
+                  </div>
                 </div>
             </div>
           </div>
