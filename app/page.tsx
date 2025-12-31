@@ -485,13 +485,6 @@ export default function Hone() {
               </svg>
             </button>
 
-            {/* Contact Button */}
-            <button
-              className="font-actor text-white dark:text-white text-sm md:text-base px-4 py-2 rounded-lg border border-gray-600 dark:border-gray-600 hover:border-cyan-400 hover:bg-cyan-400/10 transition-all duration-300"
-              onClick={() => setIsContactModalOpen(true)}
-            >
-              Contact
-            </button>
           </div>
       </header>
 
@@ -2198,9 +2191,47 @@ export default function Hone() {
                 backgroundSize: '30px 30px'
               }}></div>
             </div>
-        </div>
-      </footer>
-    </div>
+          </div>
+        </footer>
+
+        {/* Floating Contact Icon - Bottom Right */}
+        <button
+          onClick={() => setIsContactModalOpen(true)}
+          className="fixed bottom-6 right-6 z-50 w-14 h-14 md:w-16 md:h-16 bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl hover:shadow-cyan-500/50 transition-all duration-300 group animate-bounce hover:animate-none hover:scale-110 active:scale-95"
+          aria-label="Contact"
+        >
+          {/* Pulsing Ring */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 animate-ping opacity-75"></div>
+          
+          {/* Icon Container */}
+          <div className="relative z-10 bg-gray-900 rounded-full w-full h-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-300">
+            <svg
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              className="text-white group-hover:text-cyan-300 transition-colors duration-300"
+            >
+              <path
+                d="M21 15.46l-5.27-.61-2.52 2.52a15.045 15.045 0 01-6.59-6.59l2.52-2.52L8.54 3H3.03C2.45 13.18 10.82 21.55 21 20.97v-5.51z"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </div>
+
+          {/* Tooltip */}
+          <div className="absolute right-full mr-4 px-3 py-2 bg-gray-900 text-white text-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none whitespace-nowrap shadow-lg">
+            Contact Me
+            <div className="absolute left-full top-1/2 -translate-y-1/2 border-4 border-transparent border-l-gray-900"></div>
+          </div>
+
+          {/* Glow Effect */}
+          <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-500/50 via-purple-500/50 to-pink-500/50 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 -z-10"></div>
+        </button>
+      </div>
     </>
   );
 }
