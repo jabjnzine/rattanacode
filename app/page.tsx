@@ -59,149 +59,262 @@ export default function Hone() {
       {/* Custom Contact Modal */}
       {isContactModalOpen && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm animate-in fade-in duration-300"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm animate-in fade-in duration-300"
           onClick={() => setIsContactModalOpen(false)}
         >
           <div
-            className="bg-gray-800 rounded-xl p-8 max-w-md w-full mx-4 relative shadow-2xl border border-gray-700 animate-in zoom-in-95 slide-in-from-bottom-4 duration-300"
+            className="bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 rounded-2xl p-6 max-w-sm w-full mx-4 relative shadow-2xl border border-gray-700/50 overflow-hidden transform transition-all duration-500 animate-in zoom-in-95 slide-in-from-bottom-4"
             onClick={(e) => e.stopPropagation()}
+            style={{
+              animation: 'modalEnter 0.5s ease-out',
+            }}
           >
+            <style jsx>{`
+              @keyframes modalEnter {
+                0% {
+                  opacity: 0;
+                  transform: scale(0.8) translateY(20px);
+                }
+                100% {
+                  opacity: 1;
+                  transform: scale(1) translateY(0);
+                }
+              }
+              @keyframes cardSlide {
+                0% {
+                  opacity: 0;
+                  transform: translateX(-20px);
+                }
+                100% {
+                  opacity: 1;
+                  transform: translateX(0);
+                }
+              }
+              @keyframes bounce {
+                0%, 100% {
+                  transform: translateY(0);
+                }
+                50% {
+                  transform: translateY(-10px);
+                }
+              }
+              @keyframes float {
+                0%, 100% {
+                  transform: translateY(0px);
+                }
+                50% {
+                  transform: translateY(-8px);
+                }
+              }
+              .card-animate-1 {
+                animation: cardSlide 0.5s ease-out 0.1s both;
+              }
+              .card-animate-2 {
+                animation: cardSlide 0.5s ease-out 0.2s both;
+              }
+              .card-animate-3 {
+                animation: cardSlide 0.5s ease-out 0.3s both;
+              }
+              .icon-float {
+                animation: float 3s ease-in-out infinite;
+              }
+            `}</style>
+
+            {/* Animated Background Gradient */}
+            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 via-purple-500/10 to-pink-500/10 animate-pulse"></div>
+            <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-cyan-500/20 to-transparent rounded-full blur-2xl animate-pulse"></div>
+            <div className="absolute bottom-0 left-0 w-40 h-40 bg-gradient-to-tr from-purple-500/20 to-transparent rounded-full blur-2xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+
             {/* Close Button */}
             <button
               onClick={() => setIsContactModalOpen(false)}
-              className="absolute top-4 right-4 text-gray-400 hover:text-white text-2xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-700 transition-all duration-200"
+              className="absolute top-3 right-3 text-gray-400 hover:text-white text-xl w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-700/50 backdrop-blur-sm transition-all duration-200 z-10 hover:rotate-90 hover:scale-110"
             >
               ×
             </button>
 
             {/* Header */}
-            <div className="flex flex-col items-center gap-4 pb-6">
-              <div className="w-20 h-20 bg-gradient-to-br from-gray-700 to-gray-800 rounded-full border-2 border-gray-600 flex items-center justify-center shadow-lg">
-                <svg
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  className="text-gray-400"
-                >
-                  <path
-                    d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  />
-                  <path
-                    d="M20.59 22C20.59 18.13 16.74 15 12 15C7.26 15 3.41 18.13 3.41 22"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  />
-                </svg>
+            <div className="flex flex-col items-center gap-3 pb-5 relative z-10">
+              <div className="relative icon-float">
+                <div className="w-16 h-16 bg-gradient-to-br from-cyan-500 via-purple-500 to-pink-500 rounded-full flex items-center justify-center shadow-2xl">
+                  <div className="w-14 h-14 bg-gradient-to-br from-gray-800 to-gray-900 rounded-full flex items-center justify-center border-2 border-cyan-400/50">
+                    <svg
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      className="text-cyan-400"
+                    >
+                      <path
+                        d="M12 12C14.7614 12 17 9.76142 17 7C17 4.23858 14.7614 2 12 2C9.23858 2 7 4.23858 7 7C7 9.76142 9.23858 12 12 12Z"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      />
+                      <path
+                        d="M20.59 22C20.59 18.13 16.74 15 12 15C7.26 15 3.41 18.13 3.41 22"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                      />
+                    </svg>
+                  </div>
+                </div>
+                <div className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-green-500 rounded-full border-2 border-gray-900 animate-ping"></div>
+                <div className="absolute -top-0.5 -right-0.5 w-4 h-4 bg-green-500 rounded-full border-2 border-gray-900"></div>
               </div>
               <div className="text-center">
-                <h2 className="text-3xl font-bold text-white mb-2">Contact</h2>
-                <p className="text-gray-400 text-sm font-medium tracking-wider">
-                  GET IN TOUCH
+                <h2 className="text-2xl font-bold bg-gradient-to-r from-cyan-400 via-purple-400 to-pink-400 bg-clip-text text-transparent mb-1">
+                  Contact Me
+                </h2>
+                <p className="text-gray-400 text-xs font-medium tracking-wider uppercase">
+                  Let's Connect
                 </p>
               </div>
             </div>
 
             {/* Contact Options */}
-            <div className="space-y-4">
+            <div className="space-y-3 relative z-10">
               {/* Phone Contact */}
-              <div className="bg-gray-700/80 backdrop-blur-sm rounded-xl p-5 flex items-center gap-4 hover:bg-gray-700 transition-all duration-200 hover:scale-[1.02] border border-gray-600/50">
-                <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="text-white"
-                  >
-                    <path
-                      d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59531 1.99522 8.06679 2.16708 8.43376 2.48353C8.80073 2.79999 9.04005 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.89391 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5865 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9595 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+              <a
+                href="tel:0984630999"
+                className="group card-animate-1 bg-gradient-to-br from-gray-800/90 to-gray-700/90 backdrop-blur-sm rounded-xl p-4 flex items-center gap-3 hover:from-green-600/20 hover:to-green-500/20 transition-all duration-300 hover:scale-[1.02] border border-gray-600/50 hover:border-green-500/50 shadow-lg hover:shadow-green-500/20 cursor-pointer"
+              >
+                <div className="relative">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      className="text-white"
+                    >
+                      <path
+                        d="M22 16.92V19.92C22.0011 20.1985 21.9441 20.4742 21.8325 20.7293C21.7209 20.9845 21.5573 21.2136 21.3521 21.4019C21.1468 21.5901 20.9046 21.7335 20.6407 21.8227C20.3769 21.9119 20.0974 21.9451 19.82 21.92C16.7428 21.5856 13.787 20.5341 11.19 18.85C8.77382 17.3147 6.72533 15.2662 5.18999 12.85C3.49997 10.2412 2.44824 7.27099 2.11999 4.18C2.095 3.90347 2.12787 3.62476 2.21649 3.36162C2.30512 3.09849 2.44756 2.85669 2.63476 2.65162C2.82196 2.44655 3.0498 2.28271 3.30379 2.17052C3.55777 2.05833 3.83233 2.00026 4.10999 2H7.10999C7.59531 1.99522 8.06679 2.16708 8.43376 2.48353C8.80073 2.79999 9.04005 3.23945 9.10999 3.72C9.23662 4.68007 9.47144 5.62273 9.80999 6.53C9.94454 6.88792 9.97366 7.27691 9.89391 7.65088C9.81415 8.02485 9.62886 8.36811 9.35999 8.64L8.08999 9.91C9.51355 12.4135 11.5865 14.4864 14.09 15.91L15.36 14.64C15.6319 14.3711 15.9751 14.1858 16.3491 14.1061C16.7231 14.0263 17.1121 14.0555 17.47 14.19C18.3773 14.5286 19.3199 14.7634 20.28 14.89C20.7658 14.9595 21.2094 15.2032 21.5265 15.5775C21.8437 15.9518 22.0122 16.4296 22 16.92Z"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-gray-800 animate-pulse"></div>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">
+                    📞 Phone
+                  </p>
+                  <p className="text-white text-base font-bold group-hover:text-green-400 transition-colors truncate">
+                    098-463-0999
+                  </p>
+                </div>
+                <div className="text-gray-500 group-hover:text-green-400 group-hover:translate-x-1 transition-all duration-300">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
                   </svg>
                 </div>
-                <div className="flex-1">
-                  <p className="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">
-                    PHONE
-                  </p>
-                  <p className="text-white text-lg font-bold">098-463-0999</p>
-                </div>
-              </div>
+              </a>
 
               {/* WhatsApp Contact */}
-              <div className="bg-gray-700/80 backdrop-blur-sm rounded-xl p-5 flex items-center gap-4 hover:bg-gray-700 transition-all duration-200 hover:scale-[1.02] border border-gray-600/50">
-                <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-lg">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="text-white"
-                  >
-                    <path
-                      d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3.00003H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M8 12L12 16L16 8"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+              <a
+                href="https://wa.me/66984630999"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group card-animate-2 bg-gradient-to-br from-gray-800/90 to-gray-700/90 backdrop-blur-sm rounded-xl p-4 flex items-center gap-3 hover:from-green-600/20 hover:to-green-500/20 transition-all duration-300 hover:scale-[1.02] border border-gray-600/50 hover:border-green-500/50 shadow-lg hover:shadow-green-500/20 cursor-pointer"
+              >
+                <div className="relative">
+                  <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-green-600 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      className="text-white"
+                    >
+                      <path
+                        d="M21 11.5C21.0034 12.8199 20.6951 14.1219 20.1 15.3C19.3944 16.7118 18.3098 17.8992 16.9674 18.7293C15.6251 19.5594 14.0782 19.9994 12.5 20C11.1801 20.0035 9.87812 19.6951 8.7 19.1L3 21L4.9 15.3C4.30493 14.1219 3.99656 12.8199 4 11.5C4.00061 9.92179 4.44061 8.37488 5.27072 7.03258C6.10083 5.69028 7.28825 4.6056 8.7 3.90003C9.87812 3.30496 11.1801 2.99659 12.5 3.00003H13C15.0843 3.11502 17.053 3.99479 18.5291 5.47089C20.0052 6.94699 20.885 8.91568 21 11V11.5Z"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <path
+                        d="M8 12L12 16L16 8"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-green-400 rounded-full border-2 border-gray-800 animate-pulse"></div>
+                </div>
+                <div className="flex-1 min-w-0">
+                  <p className="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">
+                    💬 WhatsApp
+                  </p>
+                  <p className="text-white text-base font-bold group-hover:text-green-400 transition-colors truncate">
+                    098-463-0999
+                  </p>
+                </div>
+                <div className="text-gray-500 group-hover:text-green-400 group-hover:translate-x-1 transition-all duration-300">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
                   </svg>
                 </div>
-                <div className="flex-1">
-                  <p className="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">
-                    WHATSAPP
-                  </p>
-                  <p className="text-white text-lg font-bold">098-463-0999</p>
-                </div>
-              </div>
+              </a>
 
               {/* Email Contact */}
-              <div className="bg-gray-700/80 backdrop-blur-sm rounded-xl p-5 flex items-center gap-4 hover:bg-gray-700 transition-all duration-200 hover:scale-[1.02] border border-gray-600/50">
-                <div className="w-14 h-14 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-lg">
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="text-white"
-                  >
-                    <path
-                      d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <polyline
-                      points="22,6 12,13 2,6"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                  </svg>
+              <a
+                href="mailto:Spp.kng1998@gmail.com"
+                className="group card-animate-3 bg-gradient-to-br from-gray-800/90 to-gray-700/90 backdrop-blur-sm rounded-xl p-4 flex items-center gap-3 hover:from-red-600/20 hover:to-red-500/20 transition-all duration-300 hover:scale-[1.02] border border-gray-600/50 hover:border-red-500/50 shadow-lg hover:shadow-red-500/20 cursor-pointer"
+              >
+                <div className="relative">
+                  <div className="w-12 h-12 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center shadow-xl group-hover:scale-110 group-hover:rotate-12 transition-all duration-300">
+                    <svg
+                      width="20"
+                      height="20"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      className="text-white"
+                    >
+                      <path
+                        d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                      <polyline
+                        points="22,6 12,13 2,6"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
+                  </div>
+                  <div className="absolute -top-0.5 -right-0.5 w-3 h-3 bg-red-400 rounded-full border-2 border-gray-800 animate-pulse"></div>
                 </div>
-                <div className="flex-1">
+                <div className="flex-1 min-w-0">
                   <p className="text-gray-400 text-xs font-semibold tracking-wider uppercase mb-1">
-                    EMAIL
+                    ✉️ Email
                   </p>
-                  <p className="text-white text-lg font-bold">
+                  <p className="text-white text-sm font-bold group-hover:text-red-400 transition-colors truncate">
                     Spp.kng1998@gmail.com
                   </p>
                 </div>
-              </div>
+                <div className="text-gray-500 group-hover:text-red-400 group-hover:translate-x-1 transition-all duration-300">
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M5 12h14M12 5l7 7-7 7"/>
+                  </svg>
+                </div>
+              </a>
+            </div>
+
+            {/* Footer Message */}
+            <div className="mt-4 pt-4 border-t border-gray-700/50 text-center relative z-10">
+              <p className="text-gray-400 text-xs animate-pulse">
+                💡 Available for projects
+              </p>
             </div>
           </div>
         </div>
@@ -1025,54 +1138,146 @@ export default function Hone() {
 
             {/* Technology Stack */}
             <div className="mb-16">
-              <h3 className="text-2xl font-bold text-gray-900 dark:text-white text-center mb-8">
-                Technology Stack
-              </h3>
-
-              {/* Design Tools */}
-          <div className="mb-8">
-                <h4 className="text-lg font-semibold text-cyan-600 dark:text-cyan-400 mb-4 text-center">
-                  Design Tools
-                </h4>
-                <div className="flex flex-wrap justify-center gap-4">
-                  {["Figma", "Adobe XD", "Photoshop", "Illustrator"].map(
-                    (tool, index) => (
-                      <div
-                        key={index}
-                        className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-200/50 dark:border-gray-700/50 hover:border-cyan-500/50 transition-all duration-300 hover:scale-105 hover:rotate-1 group cursor-pointer"
-                        style={{ animationDelay: `${index * 100}ms` }}
-                      >
-                        <span className="text-gray-900 dark:text-white font-medium group-hover:text-cyan-600 dark:group-hover:text-cyan-300 transition-colors duration-300">{tool}</span>
-                      </div>
-                    )
-                  )}
-                </div>
+              <div className="text-center mb-12">
+                <h3 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+                  Technology Stack
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400 text-sm md:text-base">
+                  Tools & Technologies I work with
+                </p>
               </div>
 
-              {/* Development Tools */}
-              <div>
-                <h4 className="text-lg font-semibold text-purple-600 dark:text-purple-400 mb-4 text-center">
-                  Development Tools
-                </h4>
-                <div className="flex flex-wrap justify-center gap-4">
-                  {[
-                    "React",
-                    "Next.js",
-                    "Vue.js",
-                    "TypeScript",
-                    "NestJS",
-                    "PostgreSQL",
-                    "Docker",
-                    "Git",
-                  ].map((tool, index) => (
-                    <div
-                      key={index}
-                      className="bg-white/80 dark:bg-gray-800/50 backdrop-blur-sm rounded-xl px-6 py-3 border border-gray-200/50 dark:border-gray-700/50 hover:border-purple-500/50 transition-all duration-300 hover:scale-105 hover:-rotate-1 group cursor-pointer"
-                      style={{ animationDelay: `${index * 100}ms` }}
-                    >
-                      <span className="text-gray-900 dark:text-white font-medium group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors duration-300">{tool}</span>
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                {/* Frontend */}
+                <div className="bg-gradient-to-br from-white/90 to-white/70 dark:from-gray-800/90 dark:to-gray-800/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-blue-500 to-blue-600 flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">⚛</span>
                     </div>
-                  ))}
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white">Frontend</h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2.5">
+                    {["React", "Next.js", "Vue.js", "TypeScript", "Tailwind CSS", "JavaScript", "HTML5", "CSS3"].map(
+                      (tool, index) => (
+                        <div
+                          key={index}
+                          className="bg-blue-50 dark:bg-blue-900/20 rounded-lg px-4 py-2 border border-blue-200/50 dark:border-blue-800/50 hover:border-blue-400 dark:hover:border-blue-500 transition-all duration-300 hover:scale-105 group cursor-pointer"
+                        >
+                          <span className="text-blue-700 dark:text-blue-300 text-sm font-medium group-hover:text-blue-600 dark:group-hover:text-blue-200 transition-colors">{tool}</span>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+
+                {/* Backend */}
+                <div className="bg-gradient-to-br from-white/90 to-white/70 dark:from-gray-800/90 dark:to-gray-800/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-green-500 to-green-600 flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">⚙</span>
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white">Backend</h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2.5">
+                    {["Node.js", "NestJS", "Express", "Python", "REST API", "GraphQL", "JWT", "Socket.io"].map(
+                      (tool, index) => (
+                        <div
+                          key={index}
+                          className="bg-green-50 dark:bg-green-900/20 rounded-lg px-4 py-2 border border-green-200/50 dark:border-green-800/50 hover:border-green-400 dark:hover:border-green-500 transition-all duration-300 hover:scale-105 group cursor-pointer"
+                        >
+                          <span className="text-green-700 dark:text-green-300 text-sm font-medium group-hover:text-green-600 dark:group-hover:text-green-200 transition-colors">{tool}</span>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+
+                {/* Database */}
+                <div className="bg-gradient-to-br from-white/90 to-white/70 dark:from-gray-800/90 dark:to-gray-800/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-purple-500 to-purple-600 flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">🗄</span>
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white">Database</h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2.5">
+                    {["PostgreSQL", "MongoDB", "MySQL", "Redis", "Prisma", "TypeORM"].map(
+                      (tool, index) => (
+                        <div
+                          key={index}
+                          className="bg-purple-50 dark:bg-purple-900/20 rounded-lg px-4 py-2 border border-purple-200/50 dark:border-purple-800/50 hover:border-purple-400 dark:hover:border-purple-500 transition-all duration-300 hover:scale-105 group cursor-pointer"
+                        >
+                          <span className="text-purple-700 dark:text-purple-300 text-sm font-medium group-hover:text-purple-600 dark:group-hover:text-purple-200 transition-colors">{tool}</span>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+
+                {/* DevOps & Cloud */}
+                <div className="bg-gradient-to-br from-white/90 to-white/70 dark:from-gray-800/90 dark:to-gray-800/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-orange-500 to-orange-600 flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">☁</span>
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white">DevOps & Cloud</h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2.5">
+                    {["Docker", "Git", "GitHub", "AWS", "Vercel", "CI/CD", "Linux", "Nginx"].map(
+                      (tool, index) => (
+                        <div
+                          key={index}
+                          className="bg-orange-50 dark:bg-orange-900/20 rounded-lg px-4 py-2 border border-orange-200/50 dark:border-orange-800/50 hover:border-orange-400 dark:hover:border-orange-500 transition-all duration-300 hover:scale-105 group cursor-pointer"
+                        >
+                          <span className="text-orange-700 dark:text-orange-300 text-sm font-medium group-hover:text-orange-600 dark:group-hover:text-orange-200 transition-colors">{tool}</span>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+
+                {/* Design Tools */}
+                <div className="bg-gradient-to-br from-white/90 to-white/70 dark:from-gray-800/90 dark:to-gray-800/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-cyan-500 to-cyan-600 flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">🎨</span>
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white">Design Tools</h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2.5">
+                    {["Figma", "Adobe XD", "Photoshop", "Illustrator", "After Effects", "Sketch"].map(
+                      (tool, index) => (
+                        <div
+                          key={index}
+                          className="bg-cyan-50 dark:bg-cyan-900/20 rounded-lg px-4 py-2 border border-cyan-200/50 dark:border-cyan-800/50 hover:border-cyan-400 dark:hover:border-cyan-500 transition-all duration-300 hover:scale-105 group cursor-pointer"
+                        >
+                          <span className="text-cyan-700 dark:text-cyan-300 text-sm font-medium group-hover:text-cyan-600 dark:group-hover:text-cyan-200 transition-colors">{tool}</span>
+                        </div>
+                      )
+                    )}
+                  </div>
+                </div>
+
+                {/* Mobile & Others */}
+                <div className="bg-gradient-to-br from-white/90 to-white/70 dark:from-gray-800/90 dark:to-gray-800/70 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 dark:border-gray-700/50 shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-[1.02]">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-pink-500 to-pink-600 flex items-center justify-center">
+                      <span className="text-white font-bold text-lg">📱</span>
+                    </div>
+                    <h4 className="text-lg font-bold text-gray-900 dark:text-white">Mobile & Others</h4>
+                  </div>
+                  <div className="flex flex-wrap gap-2.5">
+                    {["React Native", "Flutter", "PWA", "WebSocket", "Microservices", "Agile"].map(
+                      (tool, index) => (
+                        <div
+                          key={index}
+                          className="bg-pink-50 dark:bg-pink-900/20 rounded-lg px-4 py-2 border border-pink-200/50 dark:border-pink-800/50 hover:border-pink-400 dark:hover:border-pink-500 transition-all duration-300 hover:scale-105 group cursor-pointer"
+                        >
+                          <span className="text-pink-700 dark:text-pink-300 text-sm font-medium group-hover:text-pink-600 dark:group-hover:text-pink-200 transition-colors">{tool}</span>
+                        </div>
+                      )
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
