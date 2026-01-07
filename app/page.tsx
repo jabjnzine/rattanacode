@@ -166,7 +166,7 @@ export default function Hone() {
                   Contact Me
                 </h2>
                 <p className="text-gray-400 text-xs font-medium tracking-wider uppercase">
-                  Let's Connect
+                  Let&apos;s Connect
                 </p>
               </div>
             </div>
